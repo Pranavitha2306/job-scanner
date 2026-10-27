@@ -152,7 +152,7 @@ library_concurrency: 40
 library_timeout_seconds: 180
 
 # Commit results/ to the repo. Set false if your repo is public.
-save_results_in_repo: true
+save_results_in_repo: false
 
 # Skills you have that may not appear word-for-word in resume.txt.
 extra_skills:
