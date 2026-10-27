@@ -1,0 +1,83 @@
+10xgenomics|10x Genomics
+albemarle|Albemarle
+alnylam|Alnylam Pharmaceuticals
+amdocs|Amdocs
+appliedmaterials|Applied Materials
+app|Eightfold
+arcadis|Arcadis
+astrazeneca|AstraZeneca
+atb|ATB Financial
+bayer|Bayer
+bms|Bristol Myers Squibb
+bostonscientific|Boston Scientific
+britishcouncil|British Council
+caci|CACI
+ccep|Coca-Cola Europacific Partners
+citi|Citi
+corteva|Corteva Agriscience
+costar|CoStar Group
+deere|John Deere
+deloitte|Deloitte
+dexcom|Dexcom
+dolby|Dolby
+dsm|dsm-firmenich
+eaton|Eaton
+elcompanies|Estée Lauder Companies
+ericsson|Ericsson
+faurecia|Forvia
+fcx|Freeport-McMoRan
+ford|Ford
+fortive|Fortive
+ftr|Frontier Communications
+globalfoundries|GlobalFoundries
+gotinder|Match Group
+grupobimbo|Bimbo Bakeries USA
+haleon|Haleon
+hasbro|Hasbro
+houstonisd|Houston ISD
+hp|HP
+hsbc|HSBC
+infineon|Infineon Technologies
+insight|Insight
+jhu|Johns Hopkins University
+kering|Kering
+kraftheinz|Kraft Heinz
+lamresearch|Lam Research
+lgcns|LG CNS
+libertymutual|Liberty Mutual Insurance
+mercadolibre|MercadoLibre
+micron|Micron Technology
+microsoft|Microsoft
+mlp|Millennium
+mm-group|MM Group
+morganstanley|Morgan Stanley
+mtsi-va|Modern Technology Solutions Inc
+netapp|NetApp
+netflix|Netflix
+newyorklife|New York Life
+nformal|nformal
+ngc|Northrop Grumman
+nttdata|NTT DATA
+nvidia|NVIDIA Corporation
+paypal|PayPal
+plexus|Plexus
+ptc|PTC
+puertoricogov|OATRH
+qualcomm|Qualcomm
+ralliant|Ralliant
+slb|SLB
+softtek|Softtek
+starbucks|Starbucks
+stmicroelectronics|STMicroelectronics
+symetra|Symetra
+tailoredbrands|Tailored Brands
+telekom-growthhub|Deutsche Telekom
+trimble|Trimble
+trinet|TriNet
+twilio|Twilio
+ukg|UKG
+vale|Vale
+vialto|Vialto Partners
+vodafone|Vodafone
+whirlpool|Whirlpool
+worley|Worley

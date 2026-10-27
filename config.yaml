@@ -1,0 +1,166 @@
+# ---------------------------------------------------------------
+# Job scanner settings. Edit these, commit, and the next run uses them.
+# ---------------------------------------------------------------
+
+# Only report jobs first posted within this many hours.
+lookback_hours: 30
+
+# Minimum resume-match score (0-100) to include a job in the digest.
+min_match: 70
+
+# Also list jobs scoring between this and min_match in a "close" section.
+near_miss_min: 60
+
+# Skip jobs whose description requires more years than this.
+max_years_required: 6
+
+# Job title must match at least one of these (case-insensitive regex).
+title_include:
+  - '\bai\b.*\bengineer'
+  - '\bml\b.*\bengineer'
+  - 'ai/ml'
+  - 'machine learning'
+  - '\bmlops\b'
+  - '\bllm\b'
+  - 'gen(erative)?\s?ai'
+  - 'applied ai'
+  - 'agent(ic)?\b.*engineer'
+  - 'forward deployed.*(ai|engineer)'
+  - '\bnlp\b.*engineer'
+  - 'artificial intelligence'
+
+# Skip titles containing any of these (seniority and off-target roles).
+title_exclude:
+  - '\bsenior\b'
+  - '\bsr\.?\b'
+  - '\bstaff\b'
+  - '\bprincipal\b'
+  - '\blead\b'
+  - '\bmanager\b'
+  - '\bdirector\b'
+  - '\bhead of\b'
+  - '\bvp\b'
+  - 'vice president'
+  - '\bchief\b'
+  - '\barchitect\b'
+  - '\bintern(ship)?\b'
+  - 'new grad'
+  - '\bjunior\b'
+  - '\bresearch scientist\b'
+  - '\bscientist\b'
+  - '\bprofessor\b'
+  - 'robotics'
+  - 'computer vision'
+  - 'perception'
+  - 'hardware'
+  - 'firmware'
+  - '\bsales\b'
+  - 'account executive'
+  - 'recruit'
+  - 'product manager'
+  - 'product marketing'
+  - 'trainer'
+  - 'tutor'
+  - 'annotat'
+  - '\bIII\b'
+  - '\bIV\b'
+
+# Companies to skip (current/past employers, already applied, etc.).
+exclude_companies:
+  - amazon
+  - aws
+  - jpmorgan
+  - jp morgan
+  - chase
+  - usaa
+
+# Location must look like the US (or US-remote). Extra US places you care about:
+us_places:
+  - dallas
+  - plano
+  - austin
+  - houston
+  - irving
+  - frisco
+
+# Optional: LLM scoring (much better match %). Set the ANTHROPIC_API_KEY secret
+# in GitHub to enable. Only the top candidates are sent, so cost stays low.
+llm:
+  enabled: true
+  model: claude-haiku-5-5
+  max_jobs_per_run: 60
+  # Only jobs with a keyword score at or above this get LLM-scored.
+  prefilter_min: 50
+
+# Sources to scan. Core platforms (fast, API-based):
+sources:
+  greenhouse: true
+  lever: true
+  ashby: true
+  smartrecruiters: true
+  workday: true
+  # Careers systems behind many companies' own-branded careers sites:
+  icims: true
+  taleo: true
+  successfactors: true
+  oracle: true
+  phenom: true
+  eightfold: true        # e.g. Microsoft, PayPal
+  avature: true
+  bamboohr: true
+  workable: true
+  paycom: true
+  jazzhr: true
+  rippling: true
+  breezy: true
+  recruitee: true
+  cornerstone: true
+  gem: true
+  pinpoint: true
+  dayforce: true
+  adp: true
+  recruiterbox: true
+  ukg: true
+  paylocity: true
+  jobvite: true
+  # Big companies with their own careers systems:
+  first_party: true
+  # Any other careers site you list in companies/custom.txt:
+  custom: true
+
+first_party:
+  - google
+  - apple
+  - uber
+  - tiktok
+  - bytedance
+
+# Titles that aren't obviously AI/ML but often are ("Software Engineer, AI Platform").
+# For these the scanner reads the job description and keeps the job only if it
+# mentions at least `generic_title_min_ai_concepts` distinct AI/ML skills
+# (LLMs, RAG, agents, LangChain, vector DBs, PyTorch, MLOps, ...).
+title_generic:
+  - '\bengineer\b'
+  - '\bdeveloper\b'
+generic_title_min_ai_concepts: 4
+max_generic_title_checks: 4000
+
+# Network tuning.
+concurrency: 60
+request_timeout_seconds: 25
+library_concurrency: 40
+library_timeout_seconds: 180
+
+# Commit results/ to the repo. Set false if your repo is public.
+save_results_in_repo: true
+
+# Skills you have that may not appear word-for-word in resume.txt.
+extra_skills:
+  - airflow
+  - step functions
+  - glue
+  - emr
+  - redshift
+  - snowflake
+  - mlflow model registry
+  - claude api

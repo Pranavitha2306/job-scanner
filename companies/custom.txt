@@ -1,0 +1,8 @@
+# Custom careers sites (companies that don't use a standard careers platform).
+# One per line:  <careers site URL> | <Company name>
+# The scanner reads the site's sitemap to find job pages and the schema.org JobPosting
+# data on each page. Sites that render jobs only with JavaScript and publish no sitemap
+# can't be read this way; use LinkedIn alerts for those.
+#
+# Examples (uncomment or add your own):
+# https://careers.example.com | Example Corp
