@@ -2,8 +2,11 @@ name: Daily AI/ML job scan
 
 on:
   schedule:
-    - cron: "37 11 * * *"
-    - cron: "37 21 * * *"
+    # Times are UTC, set for Central Standard Time (UTC-6):
+    - cron: "30 12 * * *"   # 6:30 AM Central
+    - cron: "30 15 * * *"   # 9:30 AM Central
+    - cron: "0 20 * * *"    # 2:00 PM Central
+    - cron: "0 0 * * *"     # 6:00 PM Central
   workflow_dispatch:
     inputs:
       limit:
@@ -40,6 +43,7 @@ jobs:
         env:
           RESUME_TEXT: ${{ secrets.RESUME_TEXT }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
@@ -48,7 +52,7 @@ jobs:
         run: |
           ONLY="${{ github.event.inputs.only }}"
           if [ -z "$ONLY" ]; then
-            if [ "${{ github.event.schedule }}" = "37 21 * * *" ]; then ONLY=core; else ONLY=all; fi
+            ONLY=all
           fi
           ARGS="--only $ONLY"
           if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"; fi
