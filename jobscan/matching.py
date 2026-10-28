@@ -81,9 +81,26 @@ NON_US = [
     "saudi", "switzerland", "zurich", "sweden", "stockholm", "denmark", "copenhagen", "norway",
     "finland", "italy", "milan", "belgium", "austria", "vienna", "czech", "prague", "emea",
     "apac", "latam", "europe",
+    # more countries / cities seen in remote and multi-region postings
+    "latin america", "south america", "central america", "costa rica", "guatemala", "peru", "lima",
+    "bogota", "bogotá", "medellin", "buenos aires", "santiago", "montevideo", "uruguay", "mexico city",
+    "guadalajara", "monterrey", "pakistan", "lahore", "karachi", "bangladesh", "dhaka", "sri lanka",
+    "nepal", "estonia", "tallinn", "lithuania", "vilnius", "latvia", "riga", "greece", "athens",
+    "turkey", "türkiye", "istanbul", "serbia", "belgrade", "croatia", "zagreb", "bulgaria", "sofia",
+    "hungary", "budapest", "slovakia", "slovenia", "cyprus", "malta", "luxembourg", "iceland",
+    "kyiv", "kiev", "lviv", "hamburg", "frankfurt", "cologne", "stuttgart", "rotterdam", "eindhoven",
+    "edinburgh", "glasgow", "manchester", "belfast", "cork", "galway", "bristol", "oxford, uk",
+    "thailand", "bangkok", "new zealand", "auckland", "wellington, nz", "jakarta", "kuala lumpur",
+    "ho chi minh", "hanoi", "da nang", "taipei", "shenzhen", "hangzhou", "guangzhou", "osaka",
+    "british columbia", "quebec", "québec", "alberta", "calgary", "edmonton", "ottawa", "waterloo, on",
+    "victoria, bc", "lagos", "cairo", "nairobi", "accra", "morocco", "tunisia", "qatar", "doha",
+    "abu dhabi", "riyadh", "bahrain", "oman", "jordan", "amman", "lebanon", "beirut", "armenia",
+    "yerevan", "georgia (country)", "tbilisi", "kazakhstan", "almaty", "uzbekistan", "worldwide (non-us)",
 ]
 _STATE_CODE_RE = re.compile(r"(?:,|\s)\s?(" + "|".join(US_STATES) + r")\b")
-_US_RE = re.compile(r"\b(united states|u\.s\.a?\.?|usa|us)\b", re.IGNORECASE)
+_US_RE = re.compile(r"\b(united states|u\.s\.a?\.?|usa)\b", re.IGNORECASE)
+_US_CODE_RE = re.compile(r"(?<![A-Za-z])(US|USA|U\.S\.)(?![A-Za-z])")  # "US" in caps only, not the word "us"
+_GLOBAL_RE = re.compile(r"\b(global|worldwide|international|anywhere in the world|multiple countries)\b", re.IGNORECASE)
 
 
 def is_us_location(location: str, country: str | None = None, extra_places: list[str] | None = None) -> bool:
@@ -98,7 +115,7 @@ def is_us_location(location: str, country: str | None = None, extra_places: list
     if not loc:
         return False
     low = loc.lower()
-    if _US_RE.search(loc):
+    if _US_RE.search(loc) or _US_CODE_RE.search(loc):
         return True
     for st in US_STATES.values():
         # "Washington" alone is ambiguous (state vs D.C.); both are US, so either is fine.
@@ -112,8 +129,54 @@ def is_us_location(location: str, country: str | None = None, extra_places: list
         return False
     if _STATE_CODE_RE.search(loc):
         return True
-    # Plain "Remote" / "Anywhere" with no country: keep (description check is next).
+    # "Global Remote", "Worldwide", "International": not US-specific, so don't keep on location alone.
+    if _GLOBAL_RE.search(low):
+        return False
+    # Plain "Remote" / "Anywhere" with no country: keep for now; the job description is
+    # checked later with description_location_ok().
     return bool(re.search(r"\b(remote|anywhere|distributed)\b", low))
+
+
+# Phrases in a job description that say the job is outside the US (for vague "Remote" postings).
+_NON_US_JD = [
+    r"remote\s*(\(|-|–|,|in|within|from)?\s*(canada|the uk|uk|united kingdom|europe|emea|latam|latin america|india|mexico|brazil|apac|asia|australia|germany|poland|spain|portugal|philippines)",
+    r"(based|located|living|reside|residing) in (canada|the uk|united kingdom|europe|the eu|emea|latam|latin america|india|mexico|brazil|the philippines|australia|germany|poland|spain|portugal|singapore|japan|israel|vietnam|malaysia)",
+    r"(must|need to|required to) (be|have) (legally )?(eligible|authori[sz]ed) to work in (canada|the uk|united kingdom|the eu|europe|india|mexico|brazil|australia|germany|singapore)",
+    r"right to work in (the uk|united kingdom|canada|the eu|australia|ireland)",
+    r"(salary|compensation|pay)[^.\n]{0,40}\b(cad|gbp|eur|inr|aud|sgd|mxn|brl|€|£|₹)",
+    r"\b(cad|gbp|eur|inr|aud|sgd)\s?\d", r"[€£₹]\s?\d",
+    r"fluent in (spanish|german|french|portuguese|mandarin|japanese|korean|italian|dutch|polish)",
+    r"(cet|cest|gmt|bst|ist|aest|sgt)\s*(time ?zone|working hours|hours)",
+    r"only applicants living in (british columbia|ontario|canada|the uk)",
+]
+_NON_US_JD_RE = [re.compile(p, re.IGNORECASE) for p in _NON_US_JD]
+_US_WORDS_RE = re.compile(r"united states|\bu\.s\.(?:-based)?|\bus[- ]based\b|\busa\b|remote\s*(\(|-|–|,|in|within)?\s*(the )?(us|u\.s\.|united states)\b", re.IGNORECASE)
+_USD_RE = re.compile(r"\$\s?\d{2,3}(,\d{3}|k)(?![^.\n]{0,15}\b(cad|aud|nzd|sgd|mxn)\b)", re.IGNORECASE)
+_US_JD_RE = re.compile(r"united states|\bu\.s\.(?:-based)?|\bus[- ]based\b|\busa\b|remote\s*(\(|-|–|,|in|within)?\s*(the )?(us|u\.s\.|united states)\b|\$\s?\d{2,3}[,k]", re.IGNORECASE)
+
+
+def description_location_ok(location: str, description: str) -> bool:
+    """For vague locations ("Remote", "Anywhere", blank), read the JD for where the job really is.
+
+    Keeps the job if the JD points to the US (US mention or $ salary) or says nothing either way;
+    drops it when the JD says the role is in another country (Canada, UK, EU, India, ...).
+    """
+    low_loc = (location or "").lower()
+    has_specific_us = any(st in low_loc for st in US_STATES.values()) or any(c in low_loc for c in US_CITIES) \
+        or bool(_STATE_CODE_RE.search(location or "")) or bool(_US_CODE_RE.search(location or "")) \
+        or bool(_US_RE.search(location or ""))
+    if has_specific_us:
+        return True
+    text = description or ""
+    strong = any(rx.search(text) for rx in _NON_US_JD_RE[:4] + _NON_US_JD_RE[-1:])
+    weak = any(rx.search(text) for rx in _NON_US_JD_RE[4:-1])
+    explicit_us = bool(_US_WORDS_RE.search(text))
+    dollars = bool(_USD_RE.search(text))
+    if strong and not explicit_us:
+        return False  # "based in Canada", "only applicants living in BC", "right to work in the UK"
+    if weak and not (explicit_us or dollars):
+        return False  # CAD/GBP/EUR pay, CET hours, other-language fluency, with nothing pointing to the US
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -310,3 +373,89 @@ def ai_intensity(text: str) -> int:
     if len(_ML_RE.findall(text or "")) >= 4:
         n += 1
     return n
+
+
+# ---------------------------------------------------------------------------
+# Intern / student / new-grad roles (titles slip through; the JD gives it away)
+# ---------------------------------------------------------------------------
+_STUDENT_TITLE_RE = re.compile(
+    r"\bintern(ship)?s?\b|\bco-?op\b|\bnew[- ]?grad|\bgraduate\b|\bgrad\b|\b20\d\d\s*(start|graduate|grad)\b|"
+    r"\bstudent\b|early[- ]career|entry[- ]level|\bapprentice|\bresiden(t|cy)\b|\bfellow(ship)?\b|\bsummer\b|"
+    r"\bcampus\b|\buniversity grad", re.IGNORECASE)
+_STUDENT_JD_RE = re.compile(
+    r"(currently|actively) (enrolled|pursuing)|must be (a )?(currently )?enrolled|pursuing an? (bachelor|master|ph\.?d|degree)|"
+    r"(expected|anticipated) graduation|graduating (in|between|by) (spring|summer|fall|winter|20\d\d)|"
+    r"recent(ly)? (graduate|completed)|this internship|the internship|co-?op (program|term|assignment)|"
+    r"(0|zero)\s*[-–to]+\s*[12]\s*years|no (prior )?(professional )?experience (is )?required|"
+    r"commit to an onboarding date", re.IGNORECASE)
+
+
+def student_role(title: str, description: str) -> bool:
+    """True for internships, co-ops, new-grad / early-career programs."""
+    if _STUDENT_TITLE_RE.search(title or ""):
+        return True
+    return bool(_STUDENT_JD_RE.search(description or ""))
+
+
+# ---------------------------------------------------------------------------
+# Off-target domains: jobs that mention AI but whose core requirements are something
+# else (networking, security, frontend, infrastructure, hardware, computer vision, Java).
+# A domain counts when the JD names several of its specific skills.
+# ---------------------------------------------------------------------------
+OFF_DOMAINS: dict[str, tuple[int, list[str]]] = {
+    "networking": (2, [r"\bbgp\b", r"\bospf\b", r"\bevpn\b", r"\bvxlan\b", r"spine[- ]leaf", r"\bsonic\b",
+                       r"linux network stack", r"\bgnmi\b", r"\bnetconf\b", r"\bsnmp\b", r"\brdma\b", r"\bdpdk\b",
+                       r"subnetting", r"\bvlans?\b", r"\bipmi\b", r"\bpxe\b"]),
+    "security engineering": (3, [r"\bowasp\b", r"\bsast\b", r"\bdast\b", r"\bsca\b", r"penetration test", r"threat model",
+                                 r"\bsiem\b", r"\bcspm\b", r"\bciem\b", r"\bsspm\b", r"vulnerability management",
+                                 r"incident response", r"\bsoc ?2\b", r"iso ?27001", r"\bcissp\b", r"\boscp\b", r"malware"]),
+    "frontend / full-stack": (3, [r"\breact\b", r"\bangular\b", r"\bvue(\.js)?\b", r"\bsvelte\b", r"next\.js", r"\bremix\b",
+                                   r"react native", r"\bhtml5?\b", r"\bcss3?\b", r"wordpress", r"\bshopify\b", r"\bblazor\b",
+                                   r"frontend framework", r"front[- ]end (framework|development)"]),
+    "infrastructure / DevOps": (3, [r"terraform", r"\bbicep\b", r"arm templates", r"\bansible\b", r"\bchef\b", r"\bpuppet\b",
+                                     r"control tower", r"aws organizations", r"service control polic", r"\bguardduty\b",
+                                     r"pagerduty", r"systems administration", r"patch management", r"\bfinops\b"]),
+    "hardware / model compression": (2, [r"quantization", r"\bpruning\b", r"\bonnx\b", r"\bfpga\b", r"\basic\b", r"\bcuda\b",
+                                          r"\btriton\b", r"\bvllm\b", r"analog (computing|hardware)", r"hardware bring-?up"]),
+    "computer vision / generative media": (2, [r"computer vision", r"\bdiffusion\b", r"image generation", r"video generation",
+                                                r"visual generation", r"\bcvpr\b", r"\biccv\b", r"\beccv\b", r"object detection"]),
+    "Java / Spring": (2, [r"\bj2ee\b", r"spring boot", r"\bjunit\b", r"\bspock\b", r"\bmaven\b", r"\bquarkus\b"]),
+    "Microsoft low-code": (2, [r"copilot studio", r"power automate", r"power apps", r"power platform", r"dataverse", r"power bi"]),
+}
+_OFF_RE = {d: (n, [re.compile(p, re.IGNORECASE) for p in pats]) for d, (n, pats) in OFF_DOMAINS.items()}
+
+
+def off_domains(text: str, profile: "ResumeProfile | None" = None) -> list[str]:
+    """Domains this JD leans on heavily that aren't on the resume."""
+    hits = []
+    for d, (need, pats) in _OFF_RE.items():
+        n = sum(1 for rx in pats if rx.search(text or ""))
+        if n >= need:
+            hits.append(d)
+    return hits
+
+
+# ---------------------------------------------------------------------------
+# Duplicates: same role posted in several cities, or by sister companies (TikTok/ByteDance)
+# ---------------------------------------------------------------------------
+COMPANY_FAMILIES = {"tiktok": "bytedance", "bytedance": "bytedance", "lark": "bytedance",
+                    "capcut": "bytedance", "lemon8": "bytedance"}
+
+
+def dedupe_key(company: str, title: str) -> str:
+    c = re.sub(r"[^a-z0-9 ]", " ", (company or "").lower())
+    c = re.sub(r"\b(inc|llc|ltd|corp|corporation|co|company|technologies|technology|labs)\b", " ", c).strip()
+    c = c.split()[0] if c.split() else c
+    c = COMPANY_FAMILIES.get(c, c)
+    t = (title or "").lower()
+    # drop trailing location / team qualifiers like " - San Jose", " (Remote)", " - USDS"
+    parts = re.split(r"\s+[-–|]\s+", t)
+    kept = [parts[0]] + [x for x in parts[1:] if not (
+        any(re.search(rf"\b{re.escape(cty)}\b", x) for cty in US_CITIES) or
+        any(re.search(rf"\b{st}\b", x) for st in US_STATES.values()) or
+        re.search(r"\b(remote|hybrid|onsite|on-site|us|usa|united states|usds)\b", x))]
+    t = " ".join(kept)
+    t = re.sub(r"\((remote|hybrid|on-?site|us|usa)\)", " ", t)
+    t = re.sub(r"[^a-z0-9/+ ]", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    return f"{c}|{t}"

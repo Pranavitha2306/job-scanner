@@ -54,7 +54,7 @@ jobs:
           if [ -z "$ONLY" ]; then
             ONLY=all
           fi
-          ARGS="--only $ONLY"
+          ARGS="--only $ONLY --always-send"
           if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"; fi
           python -m jobscan.scanner $ARGS
 

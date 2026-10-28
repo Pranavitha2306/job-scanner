@@ -35,7 +35,9 @@ def build_markdown(day: str, strong: list[dict], close: list[dict], stats: dict)
                f"New US jobs checked: {stats['title_hits']:,} AI/ML titles + {stats.get('generic_checked', 0):,} "
                f"engineering titles read for AI/ML work -> {stats['fresh_us']:,} candidates; "
                f"{stats['disqualified']:,} excluded because the description explicitly rules you out "
-               f"(no sponsorship, citizens/green card only, clearance, or too many years).")
+               f"(no sponsorship, citizens/green card only, clearance, intern/student, or too many years); "
+               f"{stats.get('non_us', 0):,} remote jobs dropped as outside the US; "
+               f"{stats.get('duplicates_removed', 0):,} duplicate postings merged.")
     out.append("")
     out.append(f"## Strong matches ({len(strong)})")
     out += [f"- {_line(r)}" for r in strong] or ["- None today."]

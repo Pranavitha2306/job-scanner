@@ -200,3 +200,82 @@ def test_silent_sponsorship_is_kept():
     jd = "AI Engineer. Python, LLMs, RAG. Equal opportunity employer, without regard to citizenship status."
     assert matching.disqualifiers(jd) == []
     assert matching.disqualifiers("Sponsorship is available for this role.") == []
+
+
+# ----------------------------- new filters ---------------------------------
+@pytest.mark.parametrize("title", [
+    "Visual Generation ML Engineer Graduate (AML-Ark-US) - 2027 Start",
+    "Lab Automation & AI Engineering Co-Op",
+    "LLM/AI Ops Development Engineer Graduate (Data Center Networking) - 2027 Start",
+    "Machine Learning Engineer Intern",
+    "AI Engineer, Early Career",
+])
+def test_student_titles(title):
+    assert matching.student_role(title, "")
+
+
+def test_student_from_description():
+    assert matching.student_role("AI Engineer", "Must be a currently enrolled student pursuing a degree.")
+    assert not matching.student_role("AI Engineer", "5+ years building production LLM systems.")
+
+
+@pytest.mark.parametrize("title,ok", [
+    ("LLM AIOps Development Engineer - Data Center Networking", False),
+    ("Cybersecurity Engineer - AI Agent - Local Candidate", False),
+    ("Lab Automation & AI Engineering Co-Op", False),
+    ("Software Engineer, AI Agent", False),   # generic title, handled by the JD check
+    ("AI Engineer, Internal Tools", True),
+])
+def test_new_title_excludes(title, ok):
+    import yaml
+    cfg = yaml.safe_load(open("config.yaml"))
+    inc = matching.compile_patterns(cfg["title_include"])
+    exc = matching.compile_patterns(cfg["title_exclude"])
+    assert matching.title_ok(title, inc, exc) is ok
+
+
+@pytest.mark.parametrize("loc,ok", [
+    ("Global Remote", False),
+    ("Worldwide", False),
+    ("Remote - US", True),
+    ("Valencia, Spain", False),
+    ("Landshut, Germany", False),
+    ("Remote", True),
+])
+def test_more_locations(loc, ok):
+    assert matching.is_us_location(loc, None) is ok
+
+
+def test_description_location():
+    assert not matching.description_location_ok("Remote", "Only applicants living in British Columbia will be considered. Salary $85,000 CAD")
+    assert not matching.description_location_ok("Remote", "You must be based in Canada. Pay: 90,000 CAD")
+    assert matching.description_location_ok("Remote", "This role is remote within the United States.")
+    assert matching.description_location_ok("Remote", "We build LLM agents.")
+    assert matching.description_location_ok("Austin, TX", "Fluent in Spanish preferred")
+
+
+def test_off_domains():
+    net = "Deep understanding of BGP/OSPF, EVPN/VXLAN and spine-leaf fabrics. Experience with RAG and LLM agents."
+    assert "networking" in matching.off_domains(net)
+    java = "Proficient in Java/J2EE and Spring Boot, JUnit testing."
+    assert "Java / Spring" in matching.off_domains(java)
+    ok = "Build LLM agents with LangGraph, RAG, Python, FastAPI, evals on AWS."
+    assert matching.off_domains(ok) == []
+
+
+def test_dedupe_key():
+    a = matching.dedupe_key("TikTok", "LLM AIOps Development Engineer - Data Center Networking")
+    b = matching.dedupe_key("ByteDance", "LLM AIOps Development Engineer - Data Center Networking")
+    assert a == b
+    c = matching.dedupe_key("Acme Inc", "Machine Learning Engineer - San Jose")
+    d = matching.dedupe_key("Acme", "Machine Learning Engineer - Seattle, WA")
+    assert c == d
+    assert matching.dedupe_key("Acme", "ML Engineer, Ads") != matching.dedupe_key("Acme", "ML Engineer, Search")
+
+
+def test_format_posted():
+    from jobscan.scanner import format_posted
+    now = datetime(2026, 10, 28, 20, 0, tzinfo=timezone.utc)
+    assert format_posted(datetime(2026, 10, 28, 17, 14, tzinfo=timezone.utc), now) == "Oct 28, 12:14 PM CT (2h ago)"
+    assert format_posted(datetime(2026, 10, 27, 0, 0, tzinfo=timezone.utc), now) == "Oct 26 (44h ago)"
+    assert "not listed" in format_posted(None, now)

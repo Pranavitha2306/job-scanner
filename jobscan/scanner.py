@@ -61,6 +61,19 @@ def _save_json(name: str, data) -> None:
     p.write_text(json.dumps(data, indent=0, sort_keys=True))
 
 
+def format_posted(posted_at: datetime | None, now: datetime) -> str:
+    """'Oct 28, 2:14 PM CT (3h ago)'; date only when the site gives no time of day."""
+    if not posted_at:
+        return "date not listed (new since last scan)"
+    local = posted_at.astimezone(LOCAL_TZ)
+    hours = max(0, (now - posted_at).total_seconds() / 3600)
+    ago = f"{int(hours * 60)}m ago" if hours < 1 else f"{int(hours)}h ago" if hours < 48 else f"{int(hours // 24)}d ago"
+    utc = posted_at.astimezone(timezone.utc)
+    if utc.hour == 0 and utc.minute == 0 and utc.second == 0:
+        return f"{local:%b %d} ({ago})"  # date-only from the site
+    return f"{local:%b %d, %I:%M %p} CT ({ago})".replace(" 0", " ")
+
+
 def load_resume() -> str:
     # In a public repo, keep your resume out of git: put it in the RESUME_TEXT secret instead.
     return os.environ.get("RESUME_TEXT") or (ROOT / "resume.txt").read_text()
@@ -162,9 +175,11 @@ async def scan(args) -> None:
                     continue
                 if matching.company_excluded(p.company, excluded_cos) or matching.company_excluded(slug, excluded_cos):
                     continue
+                if matching.student_role(p.title, ""):
+                    continue  # internships, co-ops, new-grad / early-career programs
                 if not args.company:
-                    if p.uid in seen:
-                        continue
+                    if p.uid in seen or ("dup:" + matching.dedupe_key(p.company, p.title)) in seen:
+                        continue  # already sent (same job, or same role at another location / sister company)
                     if p.posted_at and p.posted_at < cutoff:
                         continue
                     if not p.posted_at and first_time_board:
@@ -207,15 +222,26 @@ async def scan(args) -> None:
             text = p.description or ""
             if p.country and not matching.is_us_location(p.location, p.country, us_places):
                 continue
+            if not matching.description_location_ok(p.location, text):
+                stats["non_us"] = stats.get("non_us", 0) + 1
+                continue  # "Remote" job whose description says it's outside the US
             flags = matching.disqualifiers(text)
+            if matching.student_role(p.title, text):
+                flags.append("intern / student / new-grad role")
             yrs = matching.years_required(text)
             if yrs and yrs > max_years:
                 flags.append(f"{yrs}+ years")
             score, got, miss = matching.keyword_match(f"{p.title} {text}", profile)
             if not text:
                 score = min(score, 60)  # couldn't read the JD: never claim a strong match
+            off = matching.off_domains(f"{p.title} {text}")
+            if off:
+                # The JD's core work is in a field that isn't on your resume: keyword overlap
+                # on "LLM", "Python", "Kafka" etc. would overstate the fit.
+                score = max(0, score - 15 * len(off))
+                miss = [f"core skill area not on resume: {d}" for d in off] + miss
             row = dict(match=score, company=p.company, title=p.title, location=p.location,
-                       posted=p.posted_at.astimezone(LOCAL_TZ).strftime("%b %d") if p.posted_at else "",
+                       posted=format_posted(p.posted_at, now),
                        url=p.url, source=p.source, years=yrs or "", comp=p.extra.get("comp", ""),
                        summary="" if text else "Couldn't read the job description; check it yourself.",
                        gaps=", ".join(miss[:4]), flags="; ".join(flags), _p=p)
@@ -248,6 +274,12 @@ async def scan(args) -> None:
                     r["flags"] = (r["flags"] + "; level").strip("; ")
                 if res.get("years_required"):
                     r["years"] = res["years_required"]
+                if res.get("us_based") is False:
+                    r["flags"] = (r["flags"] + "; not US-based").strip("; ")
+                if res.get("student_role") is True:
+                    r["flags"] = (r["flags"] + "; intern/student role").strip("; ")
+                if res.get("core_domain_fit") is False:
+                    r["match"] = min(r["match"], 55)
             if pool:
                 print(f"LLM scoring {len(pool)} jobs...")
                 await asyncio.gather(*(rescore(r) for r in pool))
@@ -255,7 +287,28 @@ async def scan(args) -> None:
             scored = [r for r in scored if not r["flags"]]
             stats["disqualified"] += before - len(scored)
 
-    # ---- 6. Digest ---------------------------------------------------------------------
+    # ---- 6. Remove duplicates (same role in several cities / on sister-company sites) -----
+    scored.sort(key=lambda r: -r["match"])
+    merged: dict[str, dict] = {}
+    for r in scored:
+        key = matching.dedupe_key(r["company"], r["title"])
+        if key not in merged:
+            r["_locs"] = [r["location"]] if r["location"] else []
+            merged[key] = r
+        else:
+            keep = merged[key]
+            if r["location"] and r["location"] not in keep["_locs"]:
+                keep["_locs"].append(r["location"])
+            if r["company"] not in keep["company"]:
+                keep["company"] = f"{keep['company']} / {r['company']}"
+    for r in merged.values():
+        locs = r.pop("_locs", [])
+        if len(locs) > 1:
+            r["location"] = "; ".join(locs[:3]) + (f" (+{len(locs) - 3} more)" if len(locs) > 3 else "")
+    stats["duplicates_removed"] = len(scored) - len(merged)
+    scored = list(merged.values())
+
+    # ---- 7. Digest ---------------------------------------------------------------------
     scored.sort(key=lambda r: -r["match"])
     strong = [r for r in scored if r["match"] >= cfg.get("min_match", 70)]
     close = [r for r in scored if cfg.get("near_miss_min", 60) <= r["match"] < cfg.get("min_match", 70)]
@@ -269,6 +322,8 @@ async def scan(args) -> None:
         notify.write_files(ROOT / "results", day, md, strong + close)
     for p in candidates + generic_titles:
         seen[p.uid] = now.isoformat()
+    for p in candidates:
+        seen["dup:" + matching.dedupe_key(p.company, p.title)] = now.isoformat()
     keep_after = (now - timedelta(days=60)).isoformat()
     _save_json("seen.json", {k: v for k, v in seen.items() if v >= keep_after})
     _save_json("boards.json", boards_seen)
