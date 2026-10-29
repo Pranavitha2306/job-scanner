@@ -1390,3 +1390,5 @@ https://werkenbijvitens.nl|Werkenbijvitens
 https://workfor.kronesusa.com|Kronesusa
 https://www.carrieres-rolex.com|Rolex SA
 https://yourcareer.agresearch.co.nz|Agresearch
+https://jobs.colgate.com|Colgate-Palmolive
+https://jobs.teradyne.com|Teradyne
