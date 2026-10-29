@@ -220,6 +220,7 @@ async def scan(args) -> None:
 
         # ---- 4. Explicit exclusions + keyword score -----------------------------------
         scored = []
+        excluded: list[dict] = []  # shown at the bottom of the email so you can double-check the filters
         max_years = cfg.get("max_years_required", 6)
         for p in candidates:
             text = p.description or ""
@@ -256,6 +257,7 @@ async def scan(args) -> None:
                        gaps=", ".join(miss[:4]), flags="; ".join(flags), _p=p)
             if flags:
                 stats["disqualified"] += 1
+                excluded.append(row)
                 continue
             scored.append(row)
 
@@ -297,6 +299,7 @@ async def scan(args) -> None:
                 print(f"LLM scoring {len(pool)} jobs...")
                 await asyncio.gather(*(rescore(r) for r in pool))
             before = len(scored)
+            excluded += [r for r in scored if r["flags"]]
             scored = [r for r in scored if not r["flags"]]
             stats["disqualified"] += before - len(scored)
 
@@ -326,6 +329,7 @@ async def scan(args) -> None:
     strong = [r for r in scored if r["match"] >= cfg.get("min_match", 70)]
     close = [r for r in scored if cfg.get("near_miss_min", 60) <= r["match"] < cfg.get("min_match", 70)]
     day = datetime.now(LOCAL_TZ).strftime("%Y-%m-%d")
+    stats["excluded_list"] = sorted(excluded, key=lambda r: -r["match"])
     md = notify.build_markdown(day, strong, close, stats)
     print("\n" + md)
     if args.company:

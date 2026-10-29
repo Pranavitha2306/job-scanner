@@ -67,6 +67,10 @@ def build_markdown(day: str, strong: list[dict], close: list[dict], stats: dict)
     if close:
         out += ["", f"## Close matches ({len(close)})"]
         out += [f"- {_line(r)}" for r in close]
+    exc = stats.get("excluded_list") or []
+    if exc:
+        out += ["", f"## Excluded ({len(exc)})"]
+        out += [f"- {r['company']} - {r['title']} ({r.get('location', '')}): {r['flags']} {r['url']}" for r in exc[:40]]
     return "\n".join(out) + "\n"
 
 
@@ -90,7 +94,21 @@ def build_html(md_strong: list[dict], md_close: list[dict], day: str, stats: dic
                if peak_hours(stats.get("posting_hours", {})) else "")
             + 
             f"<h3>Strong matches ({len(md_strong)})</h3><ul>{rows(md_strong)}</ul>"
-            + (f"<h3>Close matches ({len(md_close)})</h3><ul>{rows(md_close)}</ul>" if md_close else ""))
+            + (f"<h3>Close matches ({len(md_close)})</h3><ul>{rows(md_close)}</ul>" if md_close else "")
+            + _excluded_html(stats.get("excluded_list") or []))
+
+
+def _excluded_html(exc: list[dict]) -> str:
+    """Jobs the filters removed, with the reason, so you can spot anything dropped by mistake."""
+    if not exc:
+        return ""
+    items = "".join(
+        f"<li style='margin-bottom:4px;color:#666'><a href='{html.escape(r['url'])}' style='color:#666'>"
+        f"{html.escape(r['company'])} &ndash; {html.escape(r['title'])}</a>"
+        f" &middot; {html.escape(r.get('location', ''))} &middot; <i>{html.escape(r['flags'])}</i></li>"
+        for r in exc[:40])
+    more = f"<p style='color:#666'>+{len(exc) - 40} more</p>" if len(exc) > 40 else ""
+    return f"<h3 style='color:#666'>Excluded ({len(exc)})</h3><ul style='font-size:13px'>{items}</ul>{more}"
 
 
 def write_files(out_dir: Path, day: str, markdown: str, rows: list[dict]) -> None:
