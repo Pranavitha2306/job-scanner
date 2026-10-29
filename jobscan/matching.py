@@ -95,7 +95,9 @@ NON_US = [
     "british columbia", "quebec", "québec", "alberta", "calgary", "edmonton", "ottawa", "waterloo, on",
     "victoria, bc", "lagos", "cairo", "nairobi", "accra", "morocco", "tunisia", "qatar", "doha",
     "abu dhabi", "riyadh", "bahrain", "oman", "jordan", "amman", "lebanon", "beirut", "armenia",
-    "yerevan", "georgia (country)", "tbilisi", "kazakhstan", "almaty", "uzbekistan", "worldwide (non-us)",
+    "yerevan", "georgia (country)", "münchen", "köln", "düsseldorf", "nürnberg", "hannover",
+    "mannheim", "leipzig", "dresden", "deutschland", "österreich", "wien", "schweiz", "zürich", "standort",
+    "standorte", "bundesweit", "remote - europe", "eu remote", "tbilisi", "kazakhstan", "almaty", "uzbekistan", "worldwide (non-us)",
 ]
 _STATE_CODE_RE = re.compile(r"(?:,|\s)\s?(" + "|".join(US_STATES) + r")\b")
 _US_RE = re.compile(r"\b(united states|u\.s\.a?\.?|usa)\b", re.IGNORECASE)
@@ -199,6 +201,15 @@ _DISQUALIFIERS = [
     ("No sponsorship", r"sponsorship (is |will )?(not|n't) (be )?(available|offered|provided|considered)"),
     ("No sponsorship", r"not (in a position|able) to sponsor"),
     ("No sponsorship", r"(do not|don't|will not|won't) (anticipate|expect) (providing |offering )?(visa )?sponsorship"),
+    # wider phrasing: "cannot offer any form of visa sponsorship", "unable to provide employment visa sponsorship"
+    ("No sponsorship", r"\b(not|unable to|cannot|can't|won't|will not|does not|do not|isn't|is not)\b[^.\n]{0,45}\b(visa|immigration|employment|work) ?sponsor"),
+    ("No sponsorship", r"\b(not|unable to|cannot|can't|won't|will not|does not|do not)\b (offer|provide|support|consider)[^.\n]{0,30}\bsponsorship"),
+    ("No sponsorship", r"(visa|immigration) sponsorship[^.\n]{0,30}\b(not|unavailable|n't)\b"),
+    ("No sponsorship", r"not eligible for[^.\n]{0,30}sponsorship"),
+    ("Permanent work authorization only", r"authori[sz]ed to work in the (united states|u\.?s\.?) on a permanent basis"),
+    ("Permanent work authorization only", r"permanent (u\.?s\.? )?work authori[sz]ation"),
+    ("Federal agency work (citizenship / background check)", r"\b(dhs|cbp|dod|department of (defense|homeland security)|homeland security|customs and border|federal stakeholders|federal (government )?environment|public trust)\b"),
+    ("Export control", r"export[- ]control(s|led)?\b|\bitar\b|\bear(s)? (regulations|controlled)|export licen[cs]e"),
 ]
 _DISQ_RE = [(label, re.compile(p, re.IGNORECASE)) for label, p in _DISQUALIFIERS]
 
@@ -230,9 +241,17 @@ _YEARS_RE = re.compile(
 )
 
 
+_WORD_NUMS = {"two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+              "ten": 10, "twelve": 12, "fifteen": 15}
+_WORD_YEARS_RE = re.compile(r"\b(" + "|".join(_WORD_NUMS) + r")\s*(\(\d+\)\s*)?(\+|or more|plus)?\s*years",
+                            re.IGNORECASE)
+
+
 def years_required(text: str) -> int | None:
-    """Largest minimum-years requirement mentioned (e.g. '5+ years' -> 5)."""
+    """Largest minimum-years requirement mentioned (e.g. '5+ years' -> 5, 'Eight or more years' -> 8)."""
     mins: list[int] = []
+    for m in _WORD_YEARS_RE.finditer(text or ""):
+        mins.append(_WORD_NUMS[m.group(1).lower()])
     for m in _YEARS_RE.finditer(text or ""):
         lo = int(m.group(1))
         ctx = text[max(0, m.start() - 40): m.start()].lower()
@@ -411,7 +430,9 @@ OFF_DOMAINS: dict[str, tuple[int, list[str]]] = {
                                  r"incident response", r"\bsoc ?2\b", r"iso ?27001", r"\bcissp\b", r"\boscp\b", r"malware"]),
     "frontend / full-stack": (3, [r"\breact\b", r"\bangular\b", r"\bvue(\.js)?\b", r"\bsvelte\b", r"next\.js", r"\bremix\b",
                                    r"react native", r"\bhtml5?\b", r"\bcss3?\b", r"wordpress", r"\bshopify\b", r"\bblazor\b",
-                                   r"frontend framework", r"front[- ]end (framework|development)"]),
+                                   r"frontend framework", r"front[- ]end (framework|development)",
+                                   r"\btypescript\b", r"node\.?js", r"web uis?\b", r"design taste", r"\bhtmx\b",
+                                   r"alpine\.js", r"tailwind", r"\bdjango\b"]),
     "infrastructure / DevOps": (3, [r"terraform", r"\bbicep\b", r"arm templates", r"\bansible\b", r"\bchef\b", r"\bpuppet\b",
                                      r"control tower", r"aws organizations", r"service control polic", r"\bguardduty\b",
                                      r"pagerduty", r"systems administration", r"patch management", r"\bfinops\b"]),
@@ -420,7 +441,22 @@ OFF_DOMAINS: dict[str, tuple[int, list[str]]] = {
     "computer vision / generative media": (2, [r"computer vision", r"\bdiffusion\b", r"image generation", r"video generation",
                                                 r"visual generation", r"\bcvpr\b", r"\biccv\b", r"\beccv\b", r"object detection"]),
     "Java / Spring": (2, [r"\bj2ee\b", r"spring boot", r"\bjunit\b", r"\bspock\b", r"\bmaven\b", r"\bquarkus\b"]),
-    "Microsoft low-code": (2, [r"copilot studio", r"power automate", r"power apps", r"power platform", r"dataverse", r"power bi"]),
+    "Microsoft low-code / BI": (2, [r"copilot studio", r"power automate", r"power apps", r"power platform", r"dataverse",
+                                     r"power bi", r"microsoft fabric", r"\bdax\b", r"azure ai foundry", r"entra id", r"\bpurview\b"]),
+    "database administration": (3, [r"sql server", r"stored procedures?", r"powershell", r"backup and (recovery|restore)",
+                                     r"\bha/dr\b", r"\bdba\b", r"database administrat", r"sort keys", r"workload management",
+                                     r"deadlocks?", r"\bcoldfusion\b", r"index (and statistics )?maintenance"]),
+    "data platform architecture": (3, [r"collibra", r"alation", r"\batlan\b", r"unity catalog", r"datahub", r"data[- ]vault",
+                                        r"data mesh", r"architecture reviews", r"decision records", r"target[- ]state architecture",
+                                        r"architecture roles"]),
+    "voice / telephony": (3, [r"\bvapi\b", r"retell", r"\bbland\b", r"synthflow", r"twilio", r"telnyx", r"\bsip\b", r"\bvoip\b",
+                              r"\ba2p\b", r"10dlc", r"stir/shaken", r"\bcnam\b", r"\btcpa\b", r"gohighlevel", r"deepgram",
+                              r"elevenlabs", r"telephony"]),
+    "adversarial AI security": (2, [r"adversarial", r"red team", r"data poisoning", r"model (extraction|inversion)",
+                                    r"\bnist\b", r"800-53", r"ai rmf", r"vulnerability assessment", r"\bot&e\b"]),
+    "cloud infrastructure": (3, [r"\bvpc\b", r"security groups", r"cloudformation", r"bitbucket pipelines", r"least[- ]privilege",
+                                 r"secrets management", r"\bec2\b", r"access reviews", r"infrastructure as code"]),
+    "multimodal / vision": (2, [r"\bopencv\b", r"multimodal", r"screenshots", r"gameplay video", r"image (recognition|classification)"]),
 }
 _OFF_RE = {d: (n, [re.compile(p, re.IGNORECASE) for p in pats]) for d, (n, pats) in OFF_DOMAINS.items()}
 
@@ -459,3 +495,76 @@ def dedupe_key(company: str, title: str) -> str:
     t = re.sub(r"[^a-z0-9/+ ]", " ", t)
     t = re.sub(r"\s+", " ", t).strip()
     return f"{c}|{t}"
+
+
+# ---------------------------------------------------------------------------
+# Language: postings written in another language, or that need one
+# ---------------------------------------------------------------------------
+_GENDER_TAG_RE = re.compile(r"\((m/w/d|w/m/d|w/m/x|m/w/x|f/m/d|m/f/d|h/f|f/h|m/f/x|w/m/div)\)", re.IGNORECASE)
+_FOREIGN_WORDS = {
+    "german": r"\b(und|wir|du|dein|deine|ihr|sie|mit|für|bei|als|oder|eine|einer|unsere|unser|erfahrung|kenntnisse|"
+              r"aufgaben|bewerbung|standort|jahre|sowie|über|deutsch)\b",
+    "french": r"\b(nous|vous|avec|pour|dans|votre|notre|expérience|poste|compétences|une|des|les)\b",
+    "spanish": r"\b(nosotros|con|para|experiencia|puesto|requisitos|empresa|una|los|las|del)\b",
+    "portuguese": r"\b(você|voce|com|para|experiência|vaga|requisitos|empresa|uma|dos|das)\b",
+}
+_FOREIGN_RE = {k: re.compile(v, re.IGNORECASE) for k, v in _FOREIGN_WORDS.items()}
+_ENGLISH_RE = re.compile(r"\b(the|and|with|you|will|our|for|experience|to|of)\b", re.IGNORECASE)
+_NON_LATIN_RE = re.compile(r"[\u0400-\u04FF\u0590-\u05FF\u0600-\u06FF\u3040-\u30FF\u4E00-\u9FFF\uAC00-\uD7AF]")
+_LANG_REQ_RE = re.compile(
+    r"(german|deutsch|french|spanish|portuguese|russian|ukrainian|polish|italian|dutch|japanese|korean|mandarin|chinese|"
+    r"cantonese|arabic|hebrew|turkish|vietnamese)[^.\n]{0,40}\b(c1|c2|b2|fluent|fluency|native|proficien|required|must)"
+    r"|\b(c1|c2|b2|fluent|fluency|native|proficien\w*)\b[^.\n]{0,25}\b(german|deutsch|french|spanish|portuguese|russian|"
+    r"ukrainian|polish|italian|dutch|japanese|korean|mandarin|chinese|cantonese|arabic|hebrew|turkish|vietnamese)"
+    r"|interviews?[^.\n]{0,40}\bin (both )?(german|french|spanish|portuguese|russian|japanese|korean|mandarin|chinese)"
+    r"|both in (russian|german|french|spanish|portuguese|japanese|korean|mandarin|chinese)",
+    re.IGNORECASE)
+
+
+def language_problem(title: str, description: str) -> str:
+    """Reason string if the posting is not in English or needs a non-English language, else ''."""
+    t = f"{title or ''} {description or ''}"
+    if _GENDER_TAG_RE.search(t):
+        return "German/European posting (m/w/d)"
+    if _NON_LATIN_RE.findall(t) and len(_NON_LATIN_RE.findall(t)) > 30:
+        return "posting not in English"
+    words = max(1, len(re.findall(r"[A-Za-zÀ-ÿ]+", t)))
+    english = len(_ENGLISH_RE.findall(t))
+    for lang, rx in _FOREIGN_RE.items():
+        n = len(rx.findall(t))
+        if words >= 40 and n > english and n / words > 0.06:
+            return f"posting written in {lang.title()}"
+    m = _LANG_REQ_RE.search(t)
+    if m:
+        return "needs another language (" + m.group(0).strip()[:40] + ")"
+    return ""
+
+
+# ---------------------------------------------------------------------------
+# Employment type: freelance, part-time, 1099, outsourcing
+# ---------------------------------------------------------------------------
+_EMPLOYMENT_RE = re.compile(
+    r"\bfreelance\b|independent contractor|\b1099\b|\bpart[- ]time\b|hours (of work )?per month|"
+    r"business process outsourcing|\bbpo\b|remote - contracted|contract(ed)? position for international",
+    re.IGNORECASE)
+
+
+def employment_problem(title: str, description: str) -> str:
+    m = _EMPLOYMENT_RE.search(f"{title or ''}\n{description or ''}")
+    return f"not a full-time job ({m.group(0).strip()})" if m else ""
+
+
+# ---------------------------------------------------------------------------
+# Seniority hidden in the description (title says "Engineer", JD says lead/architect)
+# ---------------------------------------------------------------------------
+_SENIOR_JD_RE = re.compile(
+    r"(we are|we're) (seeking|looking for|hiring) an? (lead|senior|staff|principal)\b|"
+    r"as (a|an|the) (lead|senior|staff|principal)\b|"
+    r"significant time in architecture|track record of leading (large|multiple)|"
+    r"lead (and|&) mentor (a team|engineers|data engineers)|mentor data engineers and architects",
+    re.IGNORECASE)
+
+
+def senior_problem(description: str) -> str:
+    m = _SENIOR_JD_RE.search(description or "")
+    return f"senior role ({m.group(0).strip()[:40]})" if m else ""

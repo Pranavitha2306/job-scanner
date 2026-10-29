@@ -1,0 +1,44 @@
+Forward Deployed Engineer (w/m/x) - AI & Enterprise Solutions 1 1
+Reference Number:  BUAI-22201-DS
+Ort:  München
+Wir sind Teil von NTT DATA, einem führenden Anbieter von Unternehmens- und Technologiedienstleistungen, KI und digitaler Infrastruktur mit einem Umsatz von über 30 Mrd. $. Als Global Top Employer betreut NTT DATA 75 % der Fortune Global 100-Unternehmen und entwickelt mit Expert:innen in über 70 Ländern gemeinsam innovative Lösungen, die dazu inspirieren, Neues zu wagen und Erfolge sichtbar zu machen. In der DACH-Region sind wir an 15 Standorten in Deutschland, Österreich und der Schweiz vertreten.
+
+Make this the place where you grow
+
+Private AI entsteht nicht auf dem Architekturdiagramm. Du bringst sie vom Design bis in den produktiven Betrieb. Als Private AI Architect (w/m/x) entwickelst du sichere, skalierbare und souveräne AI- und GenAI-Plattformen und verbindest dabei Architektur mit echter Hands-on-Umsetzung. Ob Self-hosted LLMs, RAG oder Agentic AI: Du sorgst dafür, dass aus technologischen Möglichkeiten produktionsreife Enterprise-AI-Lösungen werden.
+
+#LI-DS1
+
+Deine Benefits
+
+Flexible Arbeitszeiten mit Gleitzeitregelung und Reisezeit ist Arbeitszeit
+Home-Office Möglichkeit sowie Vereinbarung mit Vergütungszuschuss inkl. Arbeitsplatzausstattung möglich
+30 Tage Urlaub, zusätzlich sind der 24.12. und 31.12. arbeitsfreie Tage
+Sabbatical bis zu einem Jahr möglich
+Remote Work sowie mobiles Arbeiten im EU-Ausland möglich
+Attraktive Benefit- und Entgeltoptimierungsprogramme: betriebliche Altersvorsorge, JobRad, Jobticket, exklusive Rabatte über Corporate Benefits und vieles mehr
+Umfangreiche Gesundheits- und Vorsorgeangebote: verlängerte Entgeltfortzahlung im Krankheitsfall, Betriebsärztliche Betreuung, Unfallversicherung auch für Freizeitunfälle weltweit, Familienservice
+Interne und externe Weiterbildungsmöglichkeiten in der NTT DATA Academy mit fachlichen Trainings, Zertifizierungsangeboten, Soft-Skill-Schulungen, Udemy Zugang
+Diverse Communities und Initiativen (zu Diversity, Equity & Inclusion, ESG und mehr) mit Wissensaustausch auf Augenhöhe
+Teamorientierte Unternehmenskultur mit viel Gestaltungsspielraum
+Deine Mission
+
+Du designst, entwickelst, konfigurierst und implementierst Private-AI- und GenAI-Plattformen auf Basis von Open-Source- und Self-hosted-Technologien und erstellst High-Level- und Low-Level-Designs, Blueprints sowie Referenzarchitekturen für On-Premises-, Private-Cloud-, Hybrid- und Sovereign-AI-Umgebungen.
+Du entwickelst und implementierst LLM-, RAG- und Agentic-AI-Lösungen – von Ingestion Pipelines und Vector Databases über Tool Integrations und Orchestrierung bis hin zu Evaluation Components.
+Du bringst AI-Plattformen mit Kubernetes, Containerisierung und MLOps/LLMOps zuverlässig in den produktiven Betrieb und verantwortest Deployment, Monitoring, Governance sowie Troubleshooting.
+Du deployest und optimierst Self-hosted Foundation Models und Enterprise-AI-Workloads und verbesserst GPU Utilization, Quantization, Batching, Autoscaling und Latenz für leistungsfähige und hochverfügbare Inference-Architekturen.
+Du begleitest unsere Kunden bei AI-Strategie, Platform Modernization und Infrastructure Readiness, treibst POCs und MVPs voran und bringst deine Expertise in RFPs, Angebote und Aufwandsschätzungen ein.
+Dein Skillset
+
+Du verfügst über 10–13 Jahre IT-Erfahrung, davon mindestens 5 Jahre in AI/ML-Architektur, und hast Enterprise-AI-/GenAI-Lösungen in Private-Cloud-, On-Premises- oder Hybrid-Umgebungen erfolgreich umgesetzt.
+Du bringst ausgeprägte Hands-on-Erfahrung mit Private AI und GenAI mit und beherrschst LLMs, RAG, Vector Databases, Prompt Engineering und Agentic AI sowie Frameworks wie LangChain, LlamaIndex, Haystack oder Semantic Kernel und Open-Source-Modelle wie Llama, Mistral, DeepSeek oder Qwen.
+Du bist sicher im Umgang mit Kubernetes, Docker/OpenShift und MLOps/LLMOps und kennst Technologien wie MLflow, Kubeflow, KServe, Ray, vLLM oder Ollama sowie Evaluation, Tracing, Monitoring, Drift Detection und Production Support.
+Du kennst dich mit GPU- und AI-Infrastrukturen aus – einschließlich NVIDIA Stack, CUDA, MIG, Model Serving, Quantization, Distributed Inference/Training, Storage und Networking – und kannst AI-Workloads hinsichtlich Performance, Skalierbarkeit und Verfügbarkeit optimieren.
+Du verbindest dein technisches Know-how mit einem sicheren Verständnis für Security, Privacy und Sovereign AI, überzeugst im Umgang mit unterschiedlichen Stakeholdern und verfügst über Deutschkenntnisse auf mindestens C1-Niveau.
+Mit uns hast du unzählige Möglichkeiten, groß zu denken, mutig zu handeln und Verantwortung zu übernehmen. Gestalte deine Zukunft in einer Kultur, die Zugehörigkeit lebt und dir Raum für Lernen und Networking gibt.
+
+Vielfalt ist ein unverzichtbarer Teil unseres Erfolges und unserer Unternehmenskultur. Frei von Vorurteilen im Hinblick auf Geschlecht, sexuelle Orientierung, Alter, ethnische und soziale Herkunft, Religion oder Behinderung freuen wir uns dich kennenzulernen. Menschen mit Schwerbehinderung werden bei gleicher Eignung bevorzugt.
+
+Interessiert? Wir freuen uns auf Deine Online-Bewerbung!
+
+

@@ -9,10 +9,14 @@ lookback_hours: 30
 min_match: 70
 
 # Also list jobs scoring between this and min_match in a "close" section.
-near_miss_min: 60
+near_miss_min: 65
 
 # Skip jobs whose description requires more years than this.
 max_years_required: 6
+
+# Strict mode: drop jobs whose core skills are in a field that isn't on your resume
+# (full-stack/React, DBA, Power BI/Fabric, voice/telephony, cloud infra, security, ...).
+strict_domain: true
 
 # Job title must match at least one of these (case-insensitive regex).
 title_include:
@@ -81,6 +85,18 @@ title_exclude:
   - 'annotat'
   - '\bIII\b'
   - '\bIV\b'
+  - 'full[- ]?stack'
+  - 'front[- ]?end'
+  - '\bdba\b'
+  - 'database administrator'
+  - 'freelance'
+  - 'part[- ]time'
+  - '\bconsultant\b'
+  - '\bspecialist\b'
+  - '\(m/w/d\)'
+  - '\(w/m/x\)'
+  - '\(f/m/d\)'
+  - '\(h/f\)'
 
 # Companies to skip (current/past employers, already applied, etc.).
 exclude_companies:

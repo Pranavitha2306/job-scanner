@@ -1,0 +1,39 @@
+AI/ML Security Specialist (R-00247)
+Ashburn, VASecurity Resilience – Security Engineering Team /Full-Time /Hybrid
+True Zero Technologies, a veteran-owned small business, was founded on the principle that the purposeful enablement of people and technology in an organization directly ties to the quality of its outcomes. True Zero recognizes that those outcomes begin and end with our people, and that is what we have built a community of like-minded, driven, and passionate individuals and innovators who are aligned in a common goal of delivering top-tier services to our customers. Our culture and commitment have been recognized through numerous accolades, including being named one of the Best Places to Work in 2023 in two categories (“Prosperous and Thriving” ($5MM–$50MM in gross revenue) and “Mid-Atlantic Region” (DC, DE, MD, NC, VA, WV)), and again in 2025 as a Best Places to Work honoree. In addition, True Zero earned coveted spots on the Inc. 5000 list of fastest-growing companies in America in 2022, 2023, and 2025, a testament to our sustained growth driven by our people-first approach and unwavering dedication to excellence.
+ 
+ 
+
+True Zero is seeking an experienced AI/ML Cybersecurity Specialist to support the security assessment, operational testing, and protection of artificial intelligence and machine learning systems within a federal environment. This role will focus on identifying vulnerabilities in AI/ML applications, conducting adversarial testing, evaluating security risks, and developing defensive strategies to strengthen the organization's cybersecurity posture. The ideal candidate will possess a strong background in cybersecurity, hands-on experience with AI/ML security testing, and the ability to communicate technical findings and actionable recommendations to federal stakeholders.
+
+Job Responsibilities
+Conduct Operational Testing and Evaluation (OT&E) of AI/ML applications, models, and supporting infrastructure to identify security vulnerabilities, operational risks, and potential attack vectors.
+Perform adversarial AI/ML security assessments, including model evasion, data poisoning, model extraction, adversarial manipulation, and model inversion testing.
+Evaluate existing cybersecurity defenses and identify weaknesses that could be exploited through AI-enabled attacks, recommending appropriate mitigation strategies and security controls.
+Design, implement, and evaluate defensive security measures to protect AI/ML models, training data, inference pipelines, and deployed applications against emerging threats.
+Develop detailed technical assessment reports documenting vulnerabilities, testing methodologies, risk severity, and actionable remediation recommendations.
+Create and maintain Standard Operating Procedures (SOPs), security testing plans, threat models, and repeatable methodologies for AI/ML security evaluations.
+Collaborate with cybersecurity engineers, AI/ML developers, technical leads, and federal stakeholders to integrate security best practices throughout the AI/ML development and deployment lifecycle.
+Ensure AI/ML security assessments, testing procedures, and defensive implementations align with DHS, CBP, NIST, and applicable federal cybersecurity policies and standards.
+Job Qualifications
+Demonstrated experience in cybersecurity engineering, security assessments, or penetration testing, with a strong focus on AI/ML security, adversarial machine learning, and model evaluation.
+Strong understanding of AI/ML architectures, machine learning algorithms, large language models (LLMs), model training pipelines, and secure deployment practices.
+Hands-on experience identifying and evaluating AI-specific security vulnerabilities, including prompt injection, adversarial examples, data poisoning, model extraction, model inversion, and evasion attacks.
+Experience conducting penetration testing, vulnerability assessments, red teaming, or Operational Testing and Evaluation (OT&E) of software applications, AI/ML models, or supporting infrastructure.
+Proficiency with Python and familiarity with AI/ML frameworks such as PyTorch, TensorFlow, or scikit-learn, along with security testing tools and adversarial assessment methodologies.
+Knowledge of federal cybersecurity requirements and security frameworks, including NIST AI Risk Management Framework (AI RMF), NIST SP 800-53, NIST Cybersecurity Framework, and applicable DHS/CBP security policies.
+Experience developing technical assessment reports, threat models, security testing methodologies, remediation recommendations, and Standard Operating Procedures (SOPs).
+Strong analytical, problem-solving, and written and verbal communication skills, with the ability to present complex technical findings and security recommendations to federal stakeholders, engineering teams, and technical leadership.
+We’re actively searching for talented security and technology practitioners who are ready to experience the True Zero difference. As a True Zero team member, you'll enjoy:
+ 
+- Competitive salary, paid twice per month
+- Best in class medical coverage
+- 100% of medical premiums covered by True Zero
+- Company wide new business incentive programs
+- Contribution Incentives (i.e. white papers, blog posts, internal webinars, etc.)
+- 3 weeks of PTO starting + 11 Paid Holidays Annually
+- 401k Program with 100% company match on the first 4%
+- Monthly reimbursement of Cell Phone and Home Internet costs
+- Paternity/Maternity Leave
+- Investment in training and certifications to broaden and deepen your technical skills
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.

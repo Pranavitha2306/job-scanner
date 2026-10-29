@@ -29,15 +29,38 @@ def _line(r: dict) -> str:
     return s
 
 
+def peak_hours(hours: dict, top: int = 3) -> str:
+    """'Tue 09 CT (41), Wed 10 CT (37), ...' from the running {'Tue 09': n} counts."""
+    if not hours or sum(hours.values()) < 20:
+        return ""
+    by_hour: dict[int, int] = {}
+    by_day: dict[str, int] = {}
+    for k, n in hours.items():
+        d, h = k.split()
+        by_hour[int(h)] = by_hour.get(int(h), 0) + n
+        by_day[d] = by_day.get(d, 0) + n
+    total = sum(by_hour.values())
+    hrs = sorted(by_hour.items(), key=lambda x: -x[1])[:top]
+    days = sorted(by_day.items(), key=lambda x: -x[1])[:3]
+    fmt = lambda h: f"{(h % 12) or 12} {'AM' if h < 12 else 'PM'}"
+    return ("When AI/ML jobs get posted (Central time, " + f"{total:,} jobs tracked): busiest hours "
+            + ", ".join(f"{fmt(h)}-{fmt(h + 1)} ({n * 100 // total}%)" for h, n in hrs)
+            + "; busiest days " + ", ".join(f"{d} ({n * 100 // total}%)" for d, n in days) + ".")
+
+
 def build_markdown(day: str, strong: list[dict], close: list[dict], stats: dict) -> str:
     out = [f"# AI/ML job matches - {day}", ""]
     out.append(f"Scanned {stats['companies']:,} company career sites ({stats['postings']:,} open jobs). "
                f"New US jobs checked: {stats['title_hits']:,} AI/ML titles + {stats.get('generic_checked', 0):,} "
                f"engineering titles read for AI/ML work -> {stats['fresh_us']:,} candidates; "
                f"{stats['disqualified']:,} excluded because the description explicitly rules you out "
-               f"(no sponsorship, citizens/green card only, clearance, intern/student, or too many years); "
+               f"(no sponsorship, citizens/green card only, clearance, federal/export control, intern/student, too senior, "
+               f"another language, freelance/part-time, or core skills outside your resume); "
                f"{stats.get('non_us', 0):,} remote jobs dropped as outside the US; "
                f"{stats.get('duplicates_removed', 0):,} duplicate postings merged.")
+    ph = peak_hours(stats.get("posting_hours", {}))
+    if ph:
+        out += ["", ph]
     out.append("")
     out.append(f"## Strong matches ({len(strong)})")
     out += [f"- {_line(r)}" for r in strong] or ["- None today."]
@@ -63,6 +86,9 @@ def build_html(md_strong: list[dict], md_close: list[dict], day: str, stats: dic
     return (f"<h2>AI/ML job matches &ndash; {day}</h2>"
             f"<p>Scanned {stats['companies']:,} career sites &middot; {stats['fresh_us']:,} new US AI/ML postings "
             f"&middot; {stats['disqualified']:,} excluded.</p>"
+            + (f"<p style='color:#555'>{html.escape(peak_hours(stats.get('posting_hours', {})))}</p>"
+               if peak_hours(stats.get("posting_hours", {})) else "")
+            + 
             f"<h3>Strong matches ({len(md_strong)})</h3><ul>{rows(md_strong)}</ul>"
             + (f"<h3>Close matches ({len(md_close)})</h3><ul>{rows(md_close)}</ul>" if md_close else ""))
 

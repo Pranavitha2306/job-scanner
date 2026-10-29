@@ -1,0 +1,54 @@
+Software Engineer (Remote)
+Creve Coeur, MO, USA
+Employees can work remotely
+Full-time
+Company Description
+About M3: A Japanese global leader in the provision of ground-breaking and innovative technological and research solutions to the healthcare industry. The M3 Group operates in the US, Asia, and Europe with over 5.8 million physician members globally via its physician websites which include mdlinx.com, m3.com, research.m3.com, Doctors.net.uk, medigate.net, and medlive.cn. M3 Inc. is a publicly traded company on the Tokyo Stock Exchange (jp:2413, NIKKEI 225) with subsidiaries in major markets including the US, UK, Japan, South Korea, and China, and in 2020 was ranked in Forbes’ Global 2000 list. The M3 Group provides services to healthcare and the life science industry. In addition to market research, these services include medical education, ethical drug promotion, clinical development, job recruitment, and clinic appointment services. M3 has offices in Japan, UK, France, Germany, Brazil, Sweden, China, USA, and South Korea, as well as India.
+
+Due to our continued growth, we are hiring for a Software Engineer to join PracticeMatch, an M3 Company.
+
+About the Business Unit:
+
+PracticeMatch is the industry leader in providing practicing physician and resident/fellow data and services to in-house physician staffing professionals and offers a continuum of services designed to provide a clear competitive hiring advantage to health organizations.
+
+As the physician recruiting industry evolves, PracticeMatch continues to innovate with new solutions for physician sourcing, developing sourcing solutions enhanced with the power of PracticeMatch databases. With an in-house staff of experts, telemarketing, email marketing, and direct marketing, PracticeMatch offers healthcare sourcing solutions and customer service unsurpassed in the industry.
+
+Job Description
+Design and implement features for PracticeMatch products that drive impact for the business and its customers. 
+Contribute to the design of software systems, and review the code of other engineers. 
+Apply software engineering best practices, including automated testing, clean code, peer review, and documentation, to build maintainable and adaptable applications. 
+Improve the performance, security, and compliance of PracticeMatch products. 
+Contribute to the repository context, conventions, automated tests, quality gates, and executable plans that make agentic coding reliable. 
+Find repetitive or time-intensive engineering work that can move to AI-assisted or automated workflows, keeping human review where it protects quality, accuracy, and compliance. 
+Troubleshoot production web applications and help fix the causes of system problems. 
+Work with people inside and outside engineering to meet team and company objectives. 
+Contribute to projects that benefit M3 USA as a whole, collaborating across business units beyond your own team when the company needs it.
+Qualifications
+Associate or bachelor's degree in a relevant field, or equivalent experience in software engineering. 
+2+ years of professional software development experience. 
+Able to review code in Python and TypeScript. 
+Clear communication with both technical and non-technical people. 
+Knowledge of ColdFusion and SQL Server, including stored procedures and relational database design, plus React and version control with Git, preferred,
+Knowledge of the physician recruiting and sourcing domain, with a commitment to deepening it, preferred.
+Additional Information
+Company Emphasis on Agentic AI: 
+
+M3 USA's engineering organization is committed to using agentic AI across the full engineering lifecycle, from planning and development through testing, deployment, and production operation. Engineers in this role use agentic coding with tools such as Claude Code and Codex, and apply generative AI to building systems, as a standard part of daily work. This includes reviewing what these tools produce: engineers are accountable for the correctness, quality, and security of AI-generated plans and code, and for curating the documentation and repository context that keep the tools effective over time. Active, daily use of agentic coding is a core expectation of the role. 
+
+Benefits:
+
+A career opportunity with M3USA offers competitive wages, and benefits such as:
+
+Health and Dental
+Life, Accident and Disability Insurance
+Prescription Plan
+Flexible Spending Account
+401k Plan and Match
+Paid Holidays and Vacation
+Sick Days and Personal Day
+*M3 reserves the right to change this job description to meet the business needs of the organization
+
+#LI-MM1
+#LI-Remote
+
+By clicking the link above or any third-party link within this posting, you are leaving this site and going to a third-party website where the third-party website's terms and privacy policy apply

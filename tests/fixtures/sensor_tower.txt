@@ -1,0 +1,6 @@
+We're looking for an AI Engineer to build LLM-powered prototypes for our gaming analytics products.
+Build AI prototypes for game analytics, with a focus on multimodal data: screenshots, images and gameplay video.
+Choose and use the right models for each task (mainly Claude). Build retrieval and multi-step pipelines.
+Our tech stack: Python, FastAPI, LangGraph, OpenCV, PostgreSQL, S3, Kubernetes, TypeScript, React
+Strong Python (TypeScript is a plus). Experience with multimodal models: screenshots, images or video.
+Understanding of RAG and vector search. Ability to pass technical interview both in Russian & English.

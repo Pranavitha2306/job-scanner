@@ -17,11 +17,13 @@ Return ONLY a JSON object with these keys:
 - "match_pct": integer 0-100, how well the resume meets the job's stated requirements (be realistic, not generous; a perfect stack match with missing required years should still lose points)
 - "disqualified": true if the posting requires US citizenship, a green card, security clearance, US-person status, or says it will not sponsor visas; otherwise false
 - "disqualify_reason": short string or ""
-- "level_ok": false if the role is clearly staff/principal/lead/manager or needs more than 6 years; otherwise true
+- "level_ok": false if the role is clearly staff/principal/lead/manager/architect, leads other engineers, or needs more than 6 years; otherwise true
 - "years_required": integer or null
 - "us_based": false if the job must be done from outside the United States (e.g. Canada, UK, EU, India, LATAM only); true if US or US-remote; null if unclear
 - "student_role": true if it is an internship, co-op, new-grad / early-career program or requires current enrollment; otherwise false
-- "core_domain_fit": false if the job's MAIN required skills are in a field the resume does not cover (e.g. networking, security engineering, frontend/full-stack web, DevOps/infrastructure, hardware, computer vision, Java/Spring, Microsoft low-code), even if it mentions AI; otherwise true
+- "core_domain_fit": false if the job's MAIN required skills are in a field the resume does not cover (e.g. networking, security engineering, frontend/full-stack web with React/TypeScript/Node, DevOps/cloud infrastructure, database administration (SQL Server/DBA), Power BI/Microsoft Fabric, data platform architecture, voice/telephony platforms, adversarial AI security, hardware, computer vision/multimodal, Java/Spring), even if it mentions AI; otherwise true
+- "english_only": false if the posting is written in a language other than English, or requires speaking/interviewing in any language besides English (e.g. German C1, Russian); otherwise true
+- "full_time_employee": false if the job is freelance, part-time, 1099 / independent contractor, or with an offshore outsourcing (BPO) firm; true for full-time roles (W-2 contracts count as true)
 - "top_matches": up to 3 short strings, the strongest overlaps
 - "gaps": up to 3 short strings, the most important missing requirements
 - "summary": one sentence on fit

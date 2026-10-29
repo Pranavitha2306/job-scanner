@@ -1,0 +1,9 @@
+Applied AI Engineer - Research and Development - Rock Hill SC, United States - Hybrid - Full-time
+Your skills and experience
+* Strong Python skills and experience building production-quality software or internal business applications.
+* Experience building LLM-powered applications via APIs.
+* Experience with retrieval-augmented generation, tool calling, agents or comparable AI workflow patterns.
+* Ability to prototype rapidly, test with users, evaluate outputs and improve solutions.
+* Knowledge of Git, testing, code review, documentation and CI/CD.
+* Ability to communicate with technical and nontechnical stakeholders and focus on the business problem before selecting technology.
+This role offers a hybrid working arrangement at our BeaconMedaes site in Rock Hill, South Carolina.

@@ -1,0 +1,101 @@
+Full Stack Engineer, Agentic AI
+USSecurity & IT – IT /Full-time /Remote
+This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Full Stack Engineer, Agentic AI based in United States.
+
+Join a remote-first digital product engineering team building innovative, AI-powered applications for ambitious startups, established brands, and enterprise clients. In this role, you will combine full-stack engineering expertise with generative AI, large language models (LLMs), and agentic workflows to transform complex business challenges into production-ready solutions. You will work across the entire development lifecycle, from understanding client needs and designing technical architectures to deploying, testing, and optimizing scalable applications. Collaborating with experienced engineers, designers, and cross-functional teams, you will help deliver intelligent products that create measurable business value. The position offers exposure to diverse industries, modern technology stacks, and emerging AI capabilities. If you thrive in autonomous environments, enjoy solving challenging problems, and want to shape the next generation of AI-driven products, this opportunity offers meaningful technical ownership and continuous learning.
+
+Accountabilities
+Client engagement and solution discovery: Collaborate directly with clients to understand their business objectives, technical environments, operational challenges, and product requirements, translating them into actionable engineering solutions.
+
+Full-stack application development: Architect, build, test, and deploy scalable applications using technologies such as TypeScript, React, Node.js, Python, and Go, integrating AI and data capabilities throughout the application stack.
+
+Agentic AI development: Design and implement AI-powered applications and agentic workflows, including integrations with model context protocol (MCP) servers, LLM tools, and intelligent automation systems.
+
+LLM integration and optimization: Host, configure, tune, and manage large language models and related services, selecting appropriate models, libraries, and infrastructure to meet performance, cost, and reliability requirements.
+
+AI-powered feature engineering: Develop intelligent capabilities such as chatbots, information extraction, document generation, semantic search, data normalization, and other AI-driven product features.
+
+AI quality assurance and experimentation: Establish testing infrastructure, structured experimentation workflows, and evaluation frameworks to validate model outputs, improve prompt performance, and ensure reliable agent behavior.
+
+MLOps and LLMOps: Apply engineering best practices for monitoring, testing, deployment, observability, and operational reliability across AI-enabled applications and services.
+
+Data engineering and infrastructure: Design and implement scalable data pipelines, data lakes, and supporting infrastructure to enable efficient data processing and AI-powered functionality.
+
+Technical decision-making: Evaluate architectural options, communicate technical trade-offs and risks transparently, and help clients make informed decisions about implementation strategies and technology investments.
+
+Cross-functional collaboration: Work closely with engineers, designers, and other stakeholders to deliver high-quality products while maintaining strong engineering standards and effective delivery practices.
+
+Continuous innovation: Stay informed about developments in generative AI, agentic systems, cloud technologies, and developer tooling, incorporating relevant innovations into client projects.
+
+Requirements
+Professional experience: Approximately 4–6 years of experience as a Full Stack Engineer, with a proven track record of delivering and maintaining production software across the stack.
+
+Programming expertise: Strong experience with TypeScript and modern web technologies, including React and Node.js, alongside proficiency in Python or Go.
+
+Generative AI experience: Practical experience building AI-powered applications and integrating LLMs into production workflows. Familiarity with image or video generation is an advantage.
+
+LLM infrastructure: Experience hosting, tuning, and managing LLM services, libraries, or tools, with an understanding of model selection, performance optimization, and production deployment.
+
+Agentic workflows: Experience designing, building, and using agentic systems, including creating or integrating MCP servers and connecting models with external tools and services.
+
+AI application development: Demonstrated experience delivering AI-driven features such as chatbots, intelligent search, information extraction, document construction, or automated data transformation.
+
+Prompt engineering and experimentation: Familiarity with prompt design, structured experimentation, evaluation methodologies, and iterative improvement of model outputs.
+
+Model customization: Experience fine-tuning large language models using open-source models or commercial services.
+
+Testing and reliability: Confidence in establishing testing infrastructure for AI applications, validating agent behavior, and addressing the reliability challenges associated with non-deterministic model outputs.
+
+Cloud and data platforms: Experience with at least one major cloud provider, such as AWS, Google Cloud Platform, or Microsoft Azure, particularly data and machine learning services such as BigQuery or SageMaker.
+
+Consulting and client management: Previous experience in consulting, contracting, or client-facing engineering roles, with the ability to manage expectations, communicate progress, and deliver against project timelines.
+
+Adaptability and ownership: Comfortable working autonomously in a fast-moving environment, navigating ambiguity, learning unfamiliar technologies, and adapting to different client requirements and technical stacks.
+
+Communication and collaboration: Strong problem-solving skills and the ability to explain technical decisions clearly while collaborating with engineers, designers, and business stakeholders.
+
+Additional experience that would be beneficial includes:
+
+Kubernetes, Docker, and container orchestration.
+
+ETL frameworks and data pipeline tools, such as Apache Airflow.
+
+Mobile application development using React Native or native iOS and Android technologies.
+
+Strong product design sensibility and user experience intuition.
+
+Statistics, data science, or advanced analytical techniques for intelligent data processing.
+
+Relevant technical certifications, open-source contributions, or published technical work.
+
+Benefits
+Remote-first flexibility: Work from anywhere, with the freedom to choose your preferred workspace, provided you have a reliable internet connection.
+
+Comprehensive healthcare: Health, dental, and vision coverage for employees.
+
+Retirement benefits: A 401(k) plan for eligible employees based in the United States.
+
+Unlimited paid time off: Flexible vacation policy with an encouraged minimum of 15 days off annually, supporting rest and work-life balance.
+
+International team retreats: Regular company retreats at destinations around the world, with opportunities to bring a plus-one.
+
+Professional development: Work across multiple industries and cutting-edge AI projects while learning from experienced engineers and designers.
+
+Technical autonomy: Take ownership of your work, contribute code directly, and make meaningful engineering decisions with minimal unnecessary meetings.
+
+Varied project experience: Build solutions for clients ranging from early-stage startups to established global brands and enterprise organizations.
+
+Collaborative culture: Join a remote-first team that values knowledge sharing, continuous learning, innovation, and practical problem-solving.
+
+Meaningful impact: Help shape next-generation AI products and bring emerging technologies into real-world applications.
+
+How Jobgether works:
+We use an AI-powered matching process to ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.
+We appreciate your interest and wish you the best!
+ Why Apply Through Jobgether? 
+ 
+Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
+ 
+ 
+#LI-CL1
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.

@@ -178,6 +178,8 @@ async def scan(args) -> None:
                     continue
                 if matching.student_role(p.title, ""):
                     continue  # internships, co-ops, new-grad / early-career programs
+                if matching.language_problem(p.title, ""):
+                    continue  # "(m/w/d)" and similar: European postings
                 if not args.company:
                     if p.uid in seen or ("dup:" + matching.dedupe_key(p.company, p.title)) in seen:
                         continue  # already sent (same job, or same role at another location / sister company)
@@ -229,6 +231,10 @@ async def scan(args) -> None:
             flags = matching.disqualifiers(text)
             if matching.student_role(p.title, text):
                 flags.append("intern / student / new-grad role")
+            for check in (matching.language_problem(p.title, text), matching.employment_problem(p.title, text),
+                          matching.senior_problem(text)):
+                if check:
+                    flags.append(check)
             yrs = matching.years_required(text)
             if yrs and yrs > max_years:
                 flags.append(f"{yrs}+ years")
@@ -241,6 +247,8 @@ async def scan(args) -> None:
                 # on "LLM", "Python", "Kafka" etc. would overstate the fit.
                 score = max(0, score - 15 * len(off))
                 miss = [f"core skill area not on resume: {d}" for d in off] + miss
+                if cfg.get("strict_domain", True):
+                    flags.append("off-target: " + ", ".join(off))
             row = dict(match=score, company=p.company, title=p.title, location=p.location,
                        posted=format_posted(p.posted_at, now),
                        url=p.url, source=p.source, years=yrs or "", comp=p.extra.get("comp", ""),
@@ -280,7 +288,11 @@ async def scan(args) -> None:
                 if res.get("student_role") is True:
                     r["flags"] = (r["flags"] + "; intern/student role").strip("; ")
                 if res.get("core_domain_fit") is False:
-                    r["match"] = min(r["match"], 55)
+                    r["flags"] = (r["flags"] + "; off-target role").strip("; ")
+                if res.get("english_only") is False:
+                    r["flags"] = (r["flags"] + "; needs another language").strip("; ")
+                if res.get("full_time_employee") is False:
+                    r["flags"] = (r["flags"] + "; freelance / part-time / outsourcing").strip("; ")
             if pool:
                 print(f"LLM scoring {len(pool)} jobs...")
                 await asyncio.gather(*(rescore(r) for r in pool))
@@ -321,6 +333,13 @@ async def scan(args) -> None:
 
     if cfg.get("save_results_in_repo", True):
         notify.write_files(ROOT / "results", day, md, strong + close)
+    hours = _load_json("posting_hours.json", {}) if not args.company else {}
+    for p in candidates:
+        if p.posted_at and p.posted_at.hour + p.posted_at.minute:  # skip date-only stamps (midnight)
+            local = p.posted_at.astimezone(LOCAL_TZ)
+            key = f"{local:%a} {local:%H}"
+            hours[key] = hours.get(key, 0) + 1
+    stats["posting_hours"] = hours
     for p in candidates + generic_titles:
         seen[p.uid] = now.isoformat()
     for p in candidates:
@@ -328,6 +347,7 @@ async def scan(args) -> None:
     keep_after = (now - timedelta(days=60)).isoformat()
     _save_json("seen.json", {k: v for k, v in seen.items() if v >= keep_after})
     _save_json("boards.json", boards_seen)
+    _save_json("posting_hours.json", hours)
     if not args.dry_run and (strong or close or args.always_send):
         subject = f"{len(strong)} AI/ML job matches today" + (f" (+{len(close)} close)" if close else "")
         sent = notify.send_email(subject, notify.build_html(strong, close, day, stats), md)

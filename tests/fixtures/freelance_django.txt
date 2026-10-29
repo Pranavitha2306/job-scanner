@@ -1,0 +1,83 @@
+Freelance Full-Stack Developer | Django | AI Products | Python & LLM Integration
+USSecurity & IT – IT /Contract /Remote
+This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Freelance Full-Stack Developer | Django | AI Products | Python & LLM Integration based in United States.
+
+As a Freelance Full-Stack Developer, you will contribute to the ongoing development of an evolving AI-powered product at the intersection of artificial intelligence and marketing intelligence. You will build and enhance full-stack features using Python and Django, while integrating large language models and third-party APIs to deliver practical, high-value capabilities. Working with a small, experienced team, you will have meaningful ownership over your work and the opportunity to influence technical decisions and product direction. You will combine strong software engineering fundamentals with modern AI-assisted development practices to build clean, maintainable, and scalable solutions. This fully remote, part-time engagement offers flexibility and autonomy, with approximately 60 hours of work per month. It is an opportunity to contribute directly to a live AI product with an ambitious roadmap and room for new ideas.
+
+Accountabilities:
+You will contribute to the full development lifecycle, from implementing product features to integrating AI services and improving the codebase, working independently while collaborating closely with a small, senior team.
+
+Build, maintain, and extend full-stack features for an AI-powered product, primarily using Django and Python.
+
+Develop lightweight frontend interfaces using HTMX, Alpine.js, and Tailwind CSS.
+
+Integrate third-party APIs, AI services, and large language model providers, including OpenAI, Anthropic, and OpenRouter.
+
+Connect marketing data sources and incorporate relevant data into product functionality.
+
+Write clean, reliable, maintainable Python code and contribute to a well-structured, evolving codebase.
+
+Apply modern AI-assisted development tools and workflows to accelerate implementation while maintaining strong engineering standards.
+
+Manage your workload independently, communicate progress clearly, and collaborate effectively with a remote team.
+
+Contribute technical insights, suggest improvements, and help shape product development decisions.
+
+Support the continued evolution of the platform by delivering features aligned with its roadmap and user needs.
+
+Requirements:
+
+You are an experienced full-stack developer who combines strong Python and Django expertise with practical experience building AI-powered applications. You are comfortable working autonomously, using modern development tools, and contributing ideas in a collaborative environment.
+
+At least five years of hands-on full-stack development experience, preferably with Django as your primary framework.
+
+Strong Python programming skills and a proven track record of building and shipping production-ready products.
+
+Experience developing AI-powered applications using technologies such as LangChain, LangSmith, OpenAI APIs, OpenRouter, or Anthropic APIs.
+
+Familiarity with Docker and confident use of Git for version control and collaborative development.
+
+A balanced approach to software development that combines sound engineering fundamentals with modern AI-assisted workflows.
+
+Practical experience or familiarity with AI development tools such as Cursor, Codex, and Claude Code, with the ability to explain how you use them in your daily work.
+
+Strong written and spoken English, as English is the primary working language.
+
+The ability to work independently, manage priorities, communicate clearly, and contribute ideas proactively.
+
+Experience with Google Cloud Platform (GCP), Azure, CI/CD, or DevOps pipelines is a plus.
+
+Frontend development skills and a strong eye for UI design and user experience are advantageous.
+
+German language skills are a plus, particularly for candidates who also communicate fluently in English.
+
+Application requirement: You must submit both your CV and a two-minute introductory video. The video should explain who you are, why you are interested in the role, and how you use AI tools in your day-to-day work. It can be recorded using Loom, a phone, or another tool; professional production quality is not expected.
+
+Benefits:
+
+Flexible freelance engagement: Approximately 60 hours per month, equivalent to around 15 hours per week.
+
+Fully remote work: Work from anywhere in the world.
+
+Independent contractor arrangement: A freelance engagement offering flexibility and autonomy.
+
+Meaningful ownership: Take responsibility for the features you build and contribute ideas that influence the product.
+
+Experienced team: Collaborate with a small, senior team and benefit from short decision-making paths.
+
+AI product development: Work on a live, evolving AI platform with a clear roadmap and ambitious goals.
+
+Technical freedom: Bring your experience, explore solutions, and help shape how the product is developed.
+
+Flexible working style: Manage your workload independently within a collaborative remote environment.
+
+How Jobgether works:
+We use an AI-powered matching process to ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.
+We appreciate your interest and wish you the best!
+ Why Apply Through Jobgether? 
+ 
+Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
+ 
+ 
+#LI-CL1
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.

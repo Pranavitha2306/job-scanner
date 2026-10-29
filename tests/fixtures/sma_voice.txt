@@ -1,0 +1,53 @@
+Voice AI Solutions Engineer
+Remote - Contracted
+Build your career with SMA Support Services!
+
+We are a dynamic Business Process Outsourcing (BPO) company connecting talent with top-tier U.S. clients in construction and roofing.
+
+We invest in your success: Every new team member receives comprehensive, paid training to ensure you’re fully equipped and confident before supporting our clients.
+
+Ready to grow your career in a supportive, international environment? Join us—apply today!
+ 
+Qualifications
+
+
+Portfolio required. Share links to live demo agents or call recordings you built, plus short write-ups or Loom walkthroughs of telephony setups, A2P approvals, and CRM integrations you delivered.
+
+2+ years of experience building Voice AI agents, conversational AI, or automated phone systems.
+Hands-on experience with Vapi, Retell AI, Bland, Synthflow, or similar Voice AI platforms.
+Proven experience with A2P 10DLC registration, including getting Brands and Campaigns approved and fixing rejections.
+Strong working knowledge of Twilio, Telnyx, or similar carriers, plus SIP/VoIP, call routing, number provisioning, and porting.
+Understanding of STIR/SHAKEN, CNAM, spam-likely remediation, and toll-free verification is highly preferred.
+Working knowledge of TCPA, consent, call-recording laws, and DNC compliance for outbound calling and SMS.
+Strong understanding of prompt engineering and conversational flow design, including function calling, qualification logic, objection handling, and human escalation.
+Experience with REST APIs, webhooks, JSON, and OAuth/API authentication.
+Familiarity with Zapier, Make, or n8n, and with GoHighLevel or another CRM.
+Basic knowledge of JavaScript/TypeScript, Node.js, or Python is highly preferred for custom tools, webhooks, and middleware.
+Comfortable on client and sales calls: able to scope requirements, demo agents, and explain technical trade-offs in plain language.
+Ability to analyze transcripts, call metrics, and costs to continuously improve agent performance.
+Strong troubleshooting skills across Voice AI platforms, telephony carriers, APIs, and CRMs.
+Strong documentation, communication, and problem-solving skills.
+Ability to work independently, manage multiple client builds at once, and translate business processes into reliable technical solutions.
+ 
+Primary Task
+ 
+
+Design, build, configure, and maintain Voice AI agents on platforms such as Vapi, Retell AI, Bland, Synthflow, and GoHighLevel (GHL) Voice AI for inbound and outbound calling.
+Join sales and client calls to scope Voice AI builds, run live demos, map call flows, and estimate per-minute costs.
+Develop conversational agents that handle lead qualification, appointment setting, follow-ups, customer support, call routing, warm transfers, and reactivation campaigns, etc.
+Write and optimize system prompts, conversation flows, tool/function calls, objection-handling logic, fallback responses, and human escalation paths so calls sound natural and convert.
+Select and tune the voice stack: LLM (OpenAI, Anthropic, etc.), speech-to-text (Deepgram, etc.), text-to-speech (ElevenLabs, Cartesia, PlayHT, etc.), voices, interruption sensitivity, endpointing, and latency settings.
+Configure and manage telephony, including Twilio, Telnyx, Vonage, and SIP trunks; phone number provisioning and porting; inbound/outbound routing; call forwarding; voicemail detection; and transfers to live agents.
+Own A2P 10DLC registration and compliance, including Brand and Campaign registration, use-case selection, sample messages, opt-in/opt-out flows, carrier vetting, and resolving rejected or suspended campaigns.
+Manage caller reputation and deliverability: STIR/SHAKEN attestation, CNAM/branded caller ID, spam-likely flag remediation, number rotation, and toll-free verification.
+Ensure calling and texting comply with TCPA, call-recording consent rules, DNC lists, calling-hour restrictions, and state-specific AI disclosure requirements.
+Integrate Voice AI agents with CRMs (GHL, HubSpot, Salesforce), calendars, and external systems through APIs, webhooks, Zapier, Make, n8n, and custom integrations.
+Build automations that update CRM records from call outcomes, including disposition, lead status, appointment status, call summary, transcript, tags, and follow-up tasks.
+Build reporting for key Voice AI metrics such as call volume, answer rate, connect rate, qualification rate, appointment conversion rate, transfer rate, average call duration, latency, and cost per call/minute.
+Review call recordings and transcripts to improve AI responses, latency, accuracy, objection handling, and conversion performance; run A/B tests on prompts and voices.
+Troubleshoot Voice AI, telephony, SIP, A2P, webhook, and CRM sync issues, including dropped calls, one-way audio, high latency, failed transfers, and carrier filtering.
+Support the Voice AI Onboarding & Integrations Specialist on complex custom API work and advanced agent builds for partners.
+Document agent configurations, prompts, telephony setups, A2P registrations, integrations, and troubleshooting procedures.
+Collaborate with Operations, Sales, Marketing, and client teams to turn business requirements into reliable, scalable Voice AI solutions.
+Continuously evaluate new Voice AI platforms, models, voices, and telephony features, and recommend improvements that increase automation, speed-to-lead, and margin per call.
+Offer

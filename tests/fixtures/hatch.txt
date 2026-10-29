@@ -1,0 +1,97 @@
+Summary
+
+Hatch engineering culture is driven by speed, ownership, and impact. We're a small, ambitious team building AI that transforms how service businesses grow, and we move fast. Engineers own problems end to end, ship to production early, and work across a modern stack (Elixir, Python, Go, React + TypeScript) on problems that directly shape the customer experience. At the end of the day, we're here to build something that matters, grow as engineers, and do it together.
+
+The Forward Deployed Engineer is a first-class builder who ships production code into Hatch's core codebase, internal tooling, and the integration layer that connects Hatch's products to client systems. The primary focus is Hatch's Voice AI product: real-time voice agents that answer calls, qualify leads, and book appointments directly against clients' CRM and field-service systems.
+
+"Forward deployed" describes where you work, not the caliber of what you build. You sit close to our most strategic clients, watch their real call traffic, and debug their failures yourself, working through agent traces, LLM tool-call payloads, service logs, and the client's own API until you can name the actual defect. Then you fix it where it belongs: in the client's configuration, in the integration layer, or in Hatch's core voice pipeline so every customer gets the fix.
+
+Most of your week looks like engineering: reading traces, writing repros, instrumenting what nobody measured, shipping PRs, and validating them on production traffic. The rest is being the person both our clients and our Product team trust on the technical detail. You'll be deep in the build, held to production-grade standards, and given a genuine seat at the R&D table.
+
+This opportunity requires you to be located in the United States.
+
+We’d love to have you apply, even if you don’t feel you meet every single requirement in this posting. At Hatch, we’re looking for great people, not just those who simply check off all the boxes.
+
+What you'll do
+
+Root-cause voice AI failures and ship fixes into the core product. Start from one bad call and work backward through agent spans, tool-call arguments, application logs, and warehouse queries until you can explain exactly what happened. Then push PRs into Hatch's voice pipeline and integration layer, gate risky changes behind feature flags, and confirm on live traffic that the fix actually fires.
+
+Build and extend the integration layer. Direct API integrations, webhook endpoints, event-driven triggers, and connectors for CRMs and scheduling systems that have no Hatch integration yet. Reconcile what a client's business needs against what their API actually returns, including the cases where those two disagree.
+
+Build the tooling and instrumentation that makes this repeatable. Local simulators, harnesses that replay production calls end-to-end, behavioral test suites that catch regressions before a rollout, plus the spans, metrics, and dashboards that separate good calls from bad ones. Know when something you built breaks before the customer does. Build it to first-class standards even when no client ever sees it.
+
+Work in the model layer. Prompt structure and guardrails, A/B comparisons between models on real traffic, tradeoffs across latency, cost, and quality, and the practical limits (context budgets, rate limits, tool-calling reliability) that decide whether a design survives production.
+
+Own technically complex onboardings end-to-end and serve as the primary technical consultant for clients. Multi-system orchestrations, custom business logic, and CRMs with no connector, while always looking for the reusable pattern underneath. Includes potential onsite visits to present architectural solutions and see deployments through.
+
+Turn implementation learnings into product. Surface the recurring patterns that justify dedicated R&D investment, and where something belongs natively, build the first-class version yourself and hand it off to an R&D team to own.
+
+What it takes to succeed
+
+1-4 years of software engineering experience. You take systems apart to see how they actually work, you'd rather read the source or the raw API response than guess, and debugging is one of your core skills. You're comfortable being handed one broken production interaction with no stack trace and expected to come back with the cause.
+
+Proven ability to navigate a broad technology ecosystem and comprehensive developer documentation. You can tell the difference between a problem that warrants a change to Hatch's core code and one that should live in middleware or automation tooling.
+
+You verify in production and hold yourself to a high bar. Anyone can find a plausible explanation; you confirm it against real data before calling it fixed. Because you ship quickly and with real autonomy, correctness is on you. Implementations should be right, not just working: complete and consistent, not merely functional.
+
+Great communication with business and technical audiences. When requirements are ambiguous, you resolve them before building, not after. You give clear, proactive status updates on your active builds: where you are, what's blocking you, and what the customer needs to know technically. You own the technical work and the client relationship, not project management.
+
+You get real leverage out of AI coding tools. You use them to move faster on investigation, tooling, and implementation, and you still own the correctness of everything you ship.
+
+Experience with voice AI is not required. Having shipped LLMs into a real application is a bonus: prompt design, tool calling and orchestration, evals, and the failure modes that only show up under real traffic. Familiarity with the voice stack is a further plus, but it's learnable on the job and we expect to teach it.
+
+What you'll get
+
+Based on the anticipated level of experience we are seeking, we expect the compensation range for this role to be between $144,000 and $200,000
+
+Full responsibility for projects from day one, a collaborative team, and a dynamic work environment.
+
+This opportunity has the option to be fully remote in all locations across the US
+
+Effective your first day: Full medical, vision, and dental
+
+Mental health support and services via Modern Health
+
+15 days PTO (accrual begins on date of hire and increases with 2+ years of tenure thereafter), 12 paid holidays, plus one floating holiday
+
+Up to 14 weeks of parental leave
+
+Monthly wellness stipend
+
+401(k) retirement savings plan
+
+Employee stock purchase plan
+
+Professional development reimbursement
+
+Work from home reimbursement
+
+Why Hatch
+
+Shape the future of AI-driven customer service
+
+Build alongside founders and leaders who value speed, ownership,and ambition
+
+Solve challenging problems and see the impact on real businesses and customers
+
+Join a team of builders who care about great engineering, fast execution, and each other
+
+Closing
+
+We’re proud to be an equal opportunity employer and consider qualified applicants without regard to race, color, religion, sex, national origin, ancestry, age, genetic information, sexual orientation, gender identity, marital or family status, veteran status, medical condition or disability.
+
+Actual salary offered may vary based on multiple factors, including but not limited to, an individual's location and experience.
+
+We will consider for employment qualified candidates with arrest and conviction records, consistent with applicable law (including, for example, the San Francisco Fair Chance Ordinance for roles based in San Francisco, the Los Angeles County Fair Chance Ordinance for roles based in the unincorporated areas of Los Angeles County, and the California Fair Chance Act for roles based in California).
+
+Where required by law, a criminal background check will not be conducted until after a conditional offer of employment is made, and any evaluation of a candidate's criminal background check will be subject to an individualized assessment that takes into account the candidate's specific criminal records and the responsibilities and requirements of the particular role.
+
+We are committed to providing reasonable accommodations for individuals with disabilities in our job application process. If you need assistance or an accommodation due to a disability, you may contact us at accommodations-recruiting@yelp.com or 415-969-8488.
+
+Note: Hatch does not accept agency resumes. Please do not forward resumes to any recruiting alias or employee. Hatch is not responsible for any fees related to unsolicited resumes.
+
+ 
+US Recruiting and Applicant Privacy Notice
+
+ 
+Notice to Washington Applicants - Washington State Fair Chance Act

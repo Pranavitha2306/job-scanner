@@ -1,0 +1,4 @@
+As a Full Stack Engineer, you'll work on our enterprise AI SaaS product and own meaningful parts of the product end-to-end.
+Design, build, and implement AI agents, backend services, APIs and web UIs.
+Likely have 2-4 years of professional full-stack software development experience. You're a heavy user of AI tools like Claude Code, Cursor or Codex.
+You have strong product and design taste. You're happy moving across frontend and backend when needed.

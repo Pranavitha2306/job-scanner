@@ -1,0 +1,63 @@
+Bright Vision Technologies
+AI Data Platform Engineer
+Remote - Full Time
+AI Data Platform Engineer – Remote
+
+Bright Vision Technologies is a technology consulting and software development company delivering cloud, AI, data, and enterprise solutions across the United States.
+This is a fantastic opportunity to join an established and well-respected organization offering tremendous career growth potential.
+
+Job Title: AI Data Platform Engineer
+Location: 100% Remote (U.S.)
+Position Type: Full-time, Direct W2
+Salary Range: $135,000–$170,000 Annually
+Experience Required: 6+ years
+
+Job Summary
+We are seeking a AI Data Platform Engineer to define and lead the architecture of our enterprise data platform, spanning ingestion, storage, processing, governance, and consumption layers. The role drives the strategic direction of data infrastructure, sets standards for data modeling and lifecycle management, and partners with data engineering, analytics, ML, and business stakeholders to deliver a coherent, scalable data foundation. The ideal candidate combines deep technical mastery of modern data platforms with strong architectural judgment, and has led data-platform programs of meaningful scope and complexity.
+
+Key Responsibilities
+Define the target-state architecture of the enterprise data platform, including ingestion, storage, processing, and consumption layers.
+Establish standards for data modeling, schema evolution, partitioning, file formats, and storage organization.
+Architect lakehouse, warehouse, and streaming patterns leveraging technologies such as Snowflake, Databricks, BigQuery, Redshift, Iceberg, Delta Lake, or Hudi.
+Design end-to-end data pipelines that balance latency, cost, reliability, and maintainability across batch and streaming workloads.
+Lead the integration of governance, lineage, and catalog tools such as Collibra, Alation, Atlan, Unity Catalog, or DataHub.
+Define security architecture including row- and column-level controls, masking, encryption, and identity-aware access patterns.
+Partner with ML, BI, and product teams to ensure platform capabilities align with downstream consumption needs.
+Establish data contract and data product principles to drive ownership, quality, and decoupling between producers and consumers.
+Lead architecture reviews and provide guidance on pipeline and warehouse design proposals across teams.
+Drive cost optimization and capacity planning across the data platform estate.
+Design disaster recovery, multi-region, and high-availability strategies for critical data assets.
+Mentor data engineers and architects on platform standards and emerging best practices.
+Produce architecture artifacts including context diagrams, decision records, and reference patterns.
+Stay current with data platform research, vendor offerings, and open-source ecosystem developments.
+
+Required Qualifications
+Bachelor’s or Master’s degree in Computer Science, Information Systems, or a related field.
+Eight or more years of experience in data engineering, with significant time in architecture roles.
+Deep expertise across at least two major data platforms such as Snowflake, Databricks, BigQuery, or Redshift.
+Strong understanding of lakehouse architectures, modern table formats, and streaming systems.
+Hands-on experience with Spark, Flink, or Kafka at production scale.
+Strong data modeling expertise across dimensional, normalized, and data-vault patterns.
+Experience implementing governance, lineage, and catalog capabilities.
+Solid grasp of cloud platforms, networking, identity, and cost optimization.
+Excellent communication, facilitation, and stakeholder management skills.
+Track record of leading large data platform initiatives across teams.
+
+Preferred Qualifications
+Experience with data mesh or data product architectures.
+Familiarity with semantic layers such as dbt Semantic Layer, Cube, or LookML.
+Exposure to regulated industries with strict data residency or audit requirements.
+Cloud or platform certifications (Snowflake, Databricks, AWS, Azure, GCP).
+Public talks or writing on data architecture.
+
+
+How to Apply
+
+Would you like to know more about this opportunity? For immediate consideration, please send your resume to Harry@bvteck.com or contact us at (908)676-4399. Learn more about Bright Vision Technologies at www.bvteck.com.
+
+Bright Vision Technologies is an Equal Opportunity Employer.
+Equal Employment Opportunity (EEO) Statement
+
+Bright Vision Technologies (BV Teck) is committed to equal employment opportunity (EEO) for all employees and applicants without regard to race, color, religion, sex, sexual orientation, gender identity or expression, national origin, age, genetic information, disability, veteran status, or any other protected status as defined by applicable federal, state, or local laws. This commitment extends to all aspects of employment, including recruitment, hiring, training, compensation, promotion, transfer, leaves of absence, termination, layoffs, and recall.
+
+BV Teck expressly prohibits any form of workplace harassment or discrimination. Any improper interference with employees' ability to perform their job duties may result in disciplinary action up to and including termination of employment.

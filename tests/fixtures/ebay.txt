@@ -1,0 +1,68 @@
+AI Analytics Engineer - Traffic
+Apply
+AI Analytics Engineer - Traffic
+Apply
+remote type
+Hybrid
+locations
+Austin
+time type
+Full time
+posted on
+Posted Today
+job requisition id
+R0076601
+At eBay, we're more than a global ecommerce leader — we’re changing the way the world shops and sells. Our platform empowers millions of buyers and sellers in more than 190 markets around the world. We’re committed to pushing boundaries and leaving our mark as we reinvent the future of ecommerce for enthusiasts.
+
+Our customers are our compass, authenticity thrives, bold ideas are welcome, and everyone can bring their unique selves to work — every day. We're in this together, sustaining the future of our customers, our company, and our planet.
+
+Join a team of passionate thinkers, innovators, and dreamers — and help us connect people and build communities to create economic opportunity for all.
+
+** This role cannot offer any form of visa sponsorship **
+About the team and the role:
+At eBay, we create trusted experiences that connect millions of buyers and sellers around the world. Behind those experiences is a platform that must be fast, reliable, and efficient at scale. The Traffic team plays a critical role in making that possible by transforming production telemetry into the insights and systems that help eBay’s platforms perform at their best.
+
+As an AI Analytics Engineer on the Traffic team, you will design and operate data products and analytical systems that explain, forecast, and optimize traffic behavior across eBay’s platforms. You will work across engineering, SRE, platform, application, and product teams to turn logs, metrics, traces, and traffic events into trusted datasets, scalable pipelines, and ML-ready features. This is an opportunity to work on high-impact challenges at the intersection of analytics, software engineering, and platform reliability while growing in a collaborative, modern data environment.
+
+What you will accomplish:
+Turn large-scale telemetry and traffic signals into high-quality datasets and data products that improve visibility, trust, and decision-making across the organization.
+
+Build scalable data and feature pipelines that power AI and forecasting use cases, including anomaly detection, incident prediction, capacity forecasting, and traffic attribution.
+
+Deliver dashboards and analytical experiences that help teams understand latency, availability, error rates, saturation, regional behavior, and routing changes across the platform.
+
+Use statistical and analytical techniques to identify meaningful patterns, quantify impact, and uncover the drivers of traffic and reliability outcomes.
+
+Improve confidence in data by implementing quality checks, validation, freshness monitoring, lineage-minded practices, and alerting for critical analytics workflows.
+
+Collaborate across Traffic Engineering, SRE, Platform, Application, and Product teams to connect production telemetry with customer experience, platform efficiency, and long-term scalability.
+
+What you will bring:
+Master’s degree in Computer Science, Engineering, Data Science, or a related field, or a Bachelor’s degree in a related field plus 2+ years of experience in analytics engineering, data engineering, ML data pipelines, or similar work.
+
+Strong programming skills in Python and SQL, with experience in data modeling, debugging, and building reliable batch and/or streaming workflows.
+
+Solid understanding of data warehouse or lakehouse concepts, distributed processing fundamentals, and Linux basics.
+
+Familiarity with logs, metrics, and traces, and an understanding of how observability data can be used to improve platform performance and reliability.
+
+Experience with technologies such as Spark, Databricks, Flink, Airflow, dbt, BigQuery, Snowflake, Kafka, or similar data and infrastructure tools.
+
+A thoughtful, collaborative approach to problem-solving, with interest or experience in SLI/SLO reporting, incident analytics, performance attribution, or traffic-related infrastructure concepts.
+
+** This role cannot offer any sort of visa sponsorship **
+
+Additional Details
+
+The base pay range for this position is expected in the range below:
+
+$80,800 - $143,600
+Base pay offered may vary depending on multiple individualized factors, including location, skills, and experience. The total compensation package for this position may also include other elements, including a target bonus and restricted stock units (as applicable) in addition to a full range of medical, financial, and/or other benefits (including 401(k) eligibility and various paid time off benefits, such as PTO and parental leave). Details of participation in these benefit plans will be provided if an employee receives an offer of employment.
+
+If hired, employees will be in an “at-will position” and the Company reserves the right to modify base salary (as well as any other discretionary payment or compensation program) at any time, including for reasons related to individual performance, Company or individual department/team performance, and market factors.
+
+Remote roles are not eligible for U.S. visa sponsorship.
+
+eBay is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, national origin, sex, sexual orientation, gender identity, veteran status, and disability, or other legally protected status. If you have a need that requires accommodation, please contact us at talent@ebay.com. We will make every effort to respond to your request for accommodation as soon as possible. View our accessibility statement to learn more about eBay's commitment to ensuring digital accessibility for people with disabilities. It is unlawful in Massachusetts to require or administer a lie detector test as a condition of employment or continued employment. An employer who violates this law shall be subject to criminal penalties and civil liability.
+
+We use cookies to enhance your experience and may use AI tools for administrative tasks in the hiring process. To learn how we handle your personal data and use AI responsibly, please visit our Talent Privacy Notice, Privacy Center and AI Hiring Guidelines.

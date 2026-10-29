@@ -1,0 +1,68 @@
+Consultant Forward Deployed Engineering (m/w/d)
+Du willst im Bereich Consulting – Artificial Intelligence and Data Kunden helfen, strategische Entscheidungen zu AI & Data zu treffen? Unser Team unterstützt von der Definition der AI & Data-Strategie über die Implementierung groß angelegter Datenplattformen und Visual Analytics Programme bis hin zu Einführung smarter "Age of With"-Lösungen. Sichere unseren gemeinsamen Erfolg und mach mit uns den Unterschied: als Consultant Forward Deployed Engineering (m/w/d).
+
+Standorte: Berlin, Düsseldorf, Frankfurt (Main), Hamburg, Hannover, Köln, Mannheim, München und Stuttgart.
+
+Dein Impact:
+Als Consultant Forward Deployed Engineer (m/w/d) unterstützt du unsere Kunden dabei, das Potenzial von Generative AI und Agentic AI in großem Maßstab zu erschließen und innovative Lösungen mit messbarem Geschäftswert umzusetzen.
+
+ 
+
+Transformation: Du arbeitest an einigen der ambitioniertesten AI-Programme führender europäischer Unternehmen und unterstützt dabei, wie Generative AI und Agenten Geschäftsmodelle, Prozesse und Arbeitsweisen nachhaltig verändern.
+Wertschöpfung: Gemeinsam mit unseren Kunden identifizierst du AI-Anwendungsfälle mit besonders hohem geschäftlichem Hebel und unterstützt bei deren Umsetzung, um messbaren Mehrwert entlang der gesamten Wertschöpfungskette zu schaffen.
+Enterprise Delivery: Du entwickelst AI-gestützte Anwendungen, Agentensysteme und Workflows und unterstützt dabei, diese als skalierbare, sichere und produktionsreife Enterprise-Lösungen in komplexen Unternehmensumgebungen zu etablieren.
+Solution Engineering: Du entwickelst AI-gestützte Anwendungen, Agentensysteme und Workflows auf modernen Enterprise-AI-Plattformen und unterstützt deren Skalierung in komplexen Unternehmensumgebungen.
+Innovation: Du bringst neue Technologien, Methoden und Best Practices aktiv in Kundenprojekte ein und wirkst beim Aufbau wiederverwendbarer Assets und Referenzimplementierungen mit.
+ 
+
+Dein Skillset:
+Erste Berufserfahrung in der Entwicklung, Implementierung oder Einführung von AI-, GenAI- oder datengetriebenen Lösungen, idealerweise im Beratungs- oder Projektumfeld.
+Erfolgreich abgeschlossenes Studium der (Wirtschafts-)Informatik, des (Wirtschafts-)Ingenieurwesens, der Wirtschaftswissenschaften mit Informatikbezug oder eines vergleichbaren Studiengangs
+Praktische Kenntnisse in Python sowie erste Erfahrungen mit GenAI- und Agentic-AI-Technologien wie Retrieval-Augmented Generation (RAG), Model Context Protocol (MCP), LangChain, LangGraph, Google Agent Development Kit (ADK), Microsoft Agent Framework oder vergleichbaren Technologien; Kenntnisse in SQL sind von Vorteil.
+Grundkenntnisse in Cloud-Plattformen (z. B. Azure, AWS oder GCP), API-Integration sowie erste Berührungspunkte mit Software Engineering-, DevOps-, CI/CD- oder AIOps-Konzepten sind wünschenswert.
+Reisebereitschaft sowie Deutsch (C1) und Englisch sehr gut in Wort und Schrift.
+Deine Chance:
+Spannende Aufgaben in einem innovativen Umfeld mit hochmotivierten Kolleg:innen, die sich schon jetzt auf deine Impulse freuen
+Gute Rahmenbedingungen mit attraktivem Gehalt und zahlreichen Zusatzleistungen, z. B. Firmen-Smartphone zur privaten Nutzung, Fahrradleasing und Corporate Benefits
+Work-Life-Balance durch Mobile Working & Teilzeit, EU Remote Working, Sabbaticals, Mitarbeiter:innen-Events, Well-being Angebote wie z. B. Gesundheitstage, Kooperationen mit Fitness-Anbietern und den Familienservice, der dich bei privaten Herausforderungen unterstützt
+Exzellente Weiterbildung an der Deloitte University, in On- und Offline-Seminaren und im Rahmen der Berufsqualifikation, z. B. durch [bitte fachspezifisches Training einsetzen]
+Vielfältige Gestaltungsspielräume und aktive Förderung einer inklusiven Unternehmenskultur – u. a. durch unsere Diversity & Inclusion Mitarbeiter:innen-Netzwerke
+Bist du bereit? Mach mit uns den Unterschied!
+Unser Recruiting-Team freut sich auf deine Bewerbungsunterlagen (CV sowie Abitur-, Hochschul- und Arbeitszeugnisse) über unser Online-Formular. Ein Anschreiben und ein Bewerbungsfoto sind bei uns nicht erforderlich.
+
+Jetzt bewerben
+Geschäftsbereich:  Technology & Transformation
+Service Area:  Engineering, AI & Data
+Standort:  mehrere Standorte, DE
+Job ID:  50552
+Starttermin:  Jobs werden häufig an verschiedenen Standorten mehrfach besetzt und du kannst flexibel jeden Monat beginnen - sofern nicht im Stellentext genannt, gibt es keinen Bewerbungsschluss.
+
+
+Deine Kontaktpersonen
+
+Das Deloitte Recruiting Team beantwortet Fragen unter: career@deloitte.de
+
+
+News & Events
+
+Erfahre mehr über Deloitte oder lerne uns auf unseren Recruiting-Events persönlich kennen!
+
+Alle nächsten Events findest du hier.
+
+
+Social Media
+
+Folge Deloitte Deutschland Karriere auf unseren Kanälen.
+
+   
+
+   
+
+du – passt zu uns!
+Und zur Deloitte Unternehmenskultur, die vor allem durch ein offenes und faires Miteinander geprägt ist. Beide Welten bringen wir sprachlich zusammen und nutzen das Du nicht nur innerhalb der Organisation, sondern auch bei der Ansprache unserer künftigen Talente. Das schafft Nähe und Verbundenheit und ebnet den Weg zum Wir.
+
+
+
+
+Ähnliche Stellen suchen:
+Technology, bundesweit, Beratung, All Jobs Intern, Absolventen
