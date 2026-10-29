@@ -266,17 +266,74 @@ async def desc_workday(session, p: Posting) -> str:
     return clean_text(info.get("jobDescription"))
 
 
+
+# ---------------------------------------------------------------------------
+# BambooHR (public careers JSON; the old embed widget no longer lists jobs)
+#   list:   https://{slug}.bamboohr.com/careers/list
+#   detail: https://{slug}.bamboohr.com/careers/{id}/detail  (description + datePosted)
+# companies/bamboohr.txt lines look like "slug|Company Name".
+# ---------------------------------------------------------------------------
+def _bamboo_location(j: dict) -> tuple[str, str | None]:
+    loc = j.get("location") or {}
+    ats = j.get("atsLocation") or {}
+    city = loc.get("city") or ats.get("city")
+    state = loc.get("state") or ats.get("state") or ats.get("province")
+    country = ats.get("country") or loc.get("addressCountry") or loc.get("country")
+    parts = [x for x in [city, state, country] if x]
+    remote = j.get("isRemote") or str(j.get("locationType", "")).lower() in {"1", "remote"}
+    text = ", ".join(parts)
+    if remote:
+        text = (text + " / Remote").strip(" /")
+    return text, country
+
+
+def bamboo_postings(slug: str, name: str, data) -> list[Posting]:
+    rows = (data or {}).get("result") if isinstance(data, dict) else data
+    out = []
+    for j in rows or []:
+        if not isinstance(j, dict) or not j.get("id"):
+            continue
+        loc, country = _bamboo_location(j)
+        out.append(Posting(
+            source="bamboohr", slug=slug, company=name or _pretty(slug), job_id=str(j["id"]),
+            title=j.get("jobOpeningName") or j.get("title") or "", location=loc,
+            url=f"https://{slug}.bamboohr.com/careers/{j['id']}",
+            posted_at=_iso(j.get("datePosted")), country=country,
+        ))
+    return out
+
+
+async def list_bamboohr(session, entry: str) -> list[Posting]:
+    slug, _, name = entry.partition("|")
+    slug = slug.strip()
+    data = await _get_json(session, f"https://{slug}.bamboohr.com/careers/list")
+    return bamboo_postings(slug, name.strip(), data)
+
+
+async def desc_bamboohr(session, p: Posting) -> str:
+    data = await _get_json(session, f"https://{p.slug}.bamboohr.com/careers/{p.job_id}/detail")
+    jo = ((data or {}).get("result") or {}).get("jobOpening") or {}
+    if not p.posted_at:
+        p.posted_at = _iso(jo.get("datePosted"))
+    loc = jo.get("location") or {}
+    if not p.country:
+        p.country = loc.get("addressCountry") or (jo.get("atsLocation") or {}).get("country")
+    return clean_text(jo.get("description"))
+
+
 LISTERS = {
     "greenhouse": list_greenhouse,
     "lever": list_lever,
     "ashby": list_ashby,
     "smartrecruiters": list_smartrecruiters,
     "workday": list_workday,
+    "bamboohr": list_bamboohr,
 }
 DESCRIBERS = {
     "greenhouse": desc_greenhouse,
     "smartrecruiters": desc_smartrecruiters,
     "workday": desc_workday,
+    "bamboohr": desc_bamboohr,
 }
 
 

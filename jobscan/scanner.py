@@ -131,6 +131,7 @@ async def scan(args) -> None:
                 if src in CORE:
                     async with sem:
                         posts = await fetchers.LISTERS[src](session, entry)
+                    slug = entry.split("|")[0].strip()
                 elif src == "custom":
                     async with sem:
                         posts = await extended.list_custom(session, entry, cutoff=cutoff, known=set(seen))

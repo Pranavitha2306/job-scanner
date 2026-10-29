@@ -279,3 +279,18 @@ def test_format_posted():
     assert format_posted(datetime(2026, 10, 28, 17, 14, tzinfo=timezone.utc), now) == "Oct 28, 12:14 PM CT (2h ago)"
     assert format_posted(datetime(2026, 10, 27, 0, 0, tzinfo=timezone.utc), now) == "Oct 26 (44h ago)"
     assert "not listed" in format_posted(None, now)
+
+
+def test_bamboohr_parse():
+    data = {"result": [
+        {"id": "42", "jobOpeningName": "AI Engineer", "location": {"city": "Austin", "state": "Texas"},
+         "atsLocation": {"country": "United States"}, "isRemote": False},
+        {"id": "43", "jobOpeningName": "ML Engineer", "location": {}, "atsLocation": {}, "isRemote": True},
+        {"jobOpeningName": "no id"},
+    ]}
+    ps = fetchers.bamboo_postings("acme", "Acme Inc", data)
+    assert [p.job_id for p in ps] == ["42", "43"]
+    assert ps[0].company == "Acme Inc" and ps[0].location == "Austin, Texas, United States"
+    assert ps[0].url == "https://acme.bamboohr.com/careers/42"
+    assert ps[1].location == "Remote"
+    assert matching.is_us_location(ps[0].location, ps[0].country)
