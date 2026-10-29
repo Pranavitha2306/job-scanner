@@ -9,7 +9,7 @@ lookback_hours: 30
 min_match: 70
 
 # Also list jobs scoring between this and min_match in a "close" section.
-near_miss_min: 65
+near_miss_min: 60
 
 # Skip jobs whose description requires more years than this.
 max_years_required: 6

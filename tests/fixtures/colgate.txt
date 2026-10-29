@@ -1,0 +1,107 @@
+Apply now
+Job Title:  AI Platform Engineer
+Travel Required?:  Travel - up to 10% of time
+Posting Start Date:  10/29/26
+Hybrid
+No Relocation Assistance Offered
+Job Number #176728 - Piscataway, New Jersey, United States
+
+Who We Are
+
+Colgate-Palmolive Company is a global consumer products company operating in over 200 countries specializing in Oral Care, Personal Care, Home Care, Skin Care, and Pet Nutrition. Our products are trusted in more households than any other brand in the world, making us a household name!
+
+Join Colgate-Palmolive, a caring, innovative growth company reimagining a healthier future for people, their pets, and our planet. Guided by our core values—Caring, Inclusive, and Courageous—we foster a culture that inspires our people to achieve common goals. Together, let's build a brighter, healthier future for all.
+ 
+
+ 
+Role Summary:
+
+ 
+
+The AI Platform Engineer is a hands-on software engineer who designs, builds, and operates the secure, scalable, governed foundation used by teams to develop and run enterprise AI applications and agents. The engineer builds and operates production-quality platform software and reusable services that support multiple business-facing products. These services may include approved model access, AI gateways, orchestration runtimes, identity and policy enforcement, evaluation, observability, deployment automation, and cost controls.
+
+ 
+
+This is a hands-on software engineering role spanning platform services, APIs, distributed systems, cloud infrastructure, DevSecOps, reliability, and generative AI. The primary hiring bar is demonstrated ability to design, code, test, review, deploy, and support production systems. The engineer turns enterprise architecture and governance requirements into reusable platform capabilities and standardized engineering paths that allow development teams to move quickly without recreating security, integration, monitoring, or operational controls for every solution.
+
+ 
+
+Responsibilities:
+
+Design, code, test, deploy, and operate shared enterprise AI platform services that are secure, scalable, resilient, observable, and easy for development teams to consume.
+
+Write maintainable, production-quality software for platform APIs, control-plane services, data and event-processing components, SDKs, libraries, and developer tooling.
+
+Make sound software-architecture decisions covering service boundaries, interfaces, data models, concurrency, failure handling, performance, scalability, and backward compatibility.
+
+Implement governed access to approved foundation models and providers through gateways, APIs, SDKs, routing, quotas, authentication, authorization, and policy controls.
+
+Develop platform APIs, services, libraries, command-line tools, templates, and reference implementations using languages such as Python, TypeScript, or Java.
+
+Integrate identity, SSO, service identities, RBAC/ABAC, secrets management, network controls, data-protection controls, and audit logging into platform services.
+
+Build automated unit, integration, security, performance, resilience, and platform-acceptance tests.
+
+Create developer documentation, onboarding flows, sample applications, runbooks, reference architectures, and reusable engineering standards.
+
+Evaluate emerging models, frameworks, runtimes, gateways, and AI infrastructure against enterprise requirements and concrete engineering use cases.
+
+Partner with product and application teams to improve developer experience while maintaining clear ownership boundaries between platform and product teams.
+
+Develop and review platform code, infrastructure-as-code, APIs, libraries, deployment pipelines, policies, automated tests, and operational tooling.
+
+Work with architects, security, identity, cloud, data, and application teams to turn requirements into reusable platform capabilities.
+
+Acts as an informal technical leader by setting platform engineering standards, reviewing designs and code, and mentoring engineers.
+
+May lead the delivery of a shared platform capability or coordinate technical work across cloud, security, data, and application engineering teams.
+
+ 
+
+Required Qualifications:
+
+Bachelor’s degree in Computer Science, Software engineering, Cloud engineering, Information systems, Data engineering, Artificial intelligence, or a related technical field 
+
+Experience in either of these: relevant cloud, Kubernetes, DevOps, SRE, security, data, or AI certifications  
+
+6+ years of professional software engineering experience with demonstrated hands-on development of production services, APIs, or distributed systems.
+
+Demonstrated experience designing, coding, testing, deploying, and operating shared production services used by multiple applications or development teams.
+
+Hands-on proficiency with Python and at least one additional language such as TypeScript/Node.js, or Java.
+
+ 
+
+Preferred Qualifications:
+
+Experience applying software-engineering fundamentals including modular design, data structures, concurrency, error handling, code review, automated testing, versioning, and maintainability.
+
+Experience with at least one major cloud platform and technologies such as containers, Kubernetes, serverless services, API gateways, queues, databases, caches, and secrets management.
+
+Hands-on experience building production agentic or LLM systems using an orchestration framework such as LangGraph, Google Agent Development Kit (ADK), Semantic Kernel, or an equivalent technology.
+
+Experience with Git, CI/CD, infrastructure as code, automated testing, observability, security controls, and production incident response.
+
+Practical experience integrating LLM providers or building LLM-powered platform capabilities such as gateways, RAG services, agent runtimes, evaluations, guardrails, or monitoring.
+
+Experience working with enterprise security, architecture, data, identity, privacy, or governance teams.
+
+ 
+
+
+Compensation and Benefits
+Salary Range $110,000.00 - $150,000.00 USD
+
+Pay is determined based on experience, qualifications, and location. Salaried employees may also be eligible for discretionary bonuses, profit-sharing, and long-term incentives for Executive-level roles.
+
+Benefits: Salaried employees enjoy a comprehensive benefits package, including medical, dental, vision, basic life insurance, paid parental leave, disability coverage, and participation in the 401(k) retirement plan with company matching contributions subject to eligibility requirements. Additional benefits include a minimum of 15 vacation/PTO days (hourly employees receive a minimum of 120 hours) and 13 paid holidays (vacation days are prorated based on the employee's hire date within the calendar year). Paid sick leave is adjusted based on role and location in accordance with local laws. Detailed information regarding paid sick leave entitlements will be provided to employees upon hiring and may be subject to adjustments based on changes in legislation or company policies.
+
+Our Commitment to Inclusion
+Our journey begins with our people—developing strong talent with diverse backgrounds and perspectives  to best serve our consumers around the world and fostering an inclusive environment where everyone feels a true sense of belonging. We are dedicated to ensuring that each individual can be their authentic self, is treated with respect, and is empowered by leadership to contribute meaningfully to our business.
+
+Equal Opportunity Employer
+Colgate is an equal opportunity employer and all qualified applicants will receive consideration for employment without regard to race, color, religion, gender, gender identity, sexual orientation, national origin, ethnicity, age, disability, marital status, veteran status (United States positions), or any other characteristic protected by law.
+
+Reasonable accommodation during the application process is available for persons with disabilities. Please complete this request form should you require accommodation.
+
+For additional Colgate terms and conditions, please click here.

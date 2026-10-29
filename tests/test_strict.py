@@ -39,6 +39,9 @@ BAD = [
     ("m3_web.txt", "Software Engineer", "Creve Coeur, MO", "off-target"),
     ("jobgether_fullstack.txt", "Full Stack Engineer, Agentic AI", "United States", "frontend / full-stack"),
     ("sensor_tower.txt", "AI Engineer", "Remote", "language"),
+    ("foley_gtm.txt", "Forward Deployed Engineer", "Remote - US", "sales / marketing"),
+    ("innocean.txt", "LLM Strategy & Intelligence Analyst", "Huntington Beach, CA", "sales / marketing"),
+    ("bowery.txt", "Software Engineer - AI Team", "New York, NY", "frontend / full-stack"),
 ]
 
 
@@ -53,6 +56,9 @@ def test_bad_postings_are_dropped(fname, title, loc, expect):
     ("coinflow.txt", "MLOps Engineer", "Chicago, IL"),
     ("hatch.txt", "Forward Deployed Engineer", "Remote - United States"),
     ("atlas_copco.txt", "Applied AI Engineer", "Rock Hill, SC"),
+    ("colgate.txt", "AI Platform Engineer", "Piscataway, New Jersey, United States"),
+    ("edra.txt", "AI Research Engineer", "New York, NY"),
+    ("founding.txt", "Founding AI/ML Engineer", "San Francisco, California"),
 ])
 def test_good_postings_are_kept(fname, title, loc):
     assert reasons(title, loc, (FIX / fname).read_text()) == []
@@ -80,3 +86,13 @@ def test_peak_hours_summary():
     s = notify.peak_hours(hours)
     assert "9 AM-10 AM" in s and "Tue" in s
     assert notify.peak_hours({"Tue 09": 3}) == ""
+
+
+def test_good_postings_score_high_enough():
+    import yaml
+    cfg = yaml.safe_load(open("config.yaml"))
+    prof = matching.ResumeProfile.from_text(open("resume.txt").read(), cfg.get("extra_skills"))
+    for f, t in [("edra.txt", "AI Research Engineer"), ("colgate.txt", "AI Platform Engineer"),
+                 ("hatch.txt", "Forward Deployed Engineer"), ("coinflow.txt", "MLOps Engineer")]:
+        score = matching.keyword_match(f"{t} {(FIX / f).read_text()}", prof)[0]
+        assert score >= cfg["min_match"], (f, score)

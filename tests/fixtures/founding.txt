@@ -1,0 +1,77 @@
+LinkWhatsAppEmailShare
+Share this job
+FacebookXLinkedInEmail
+Founding AI/ML Engineer
+San Francisco, California, United States
+Apply for this job
+Founding AI/ML Engineer
+
+Job Overview
+Experience: 3+ years
+Equity: Meaningful founding-level equity stake
+
+Key Responsibilities
+Design, build, and maintain secure, scalable backend services and distributed systems.
+Develop data processing and retrieval pipelines for large volumes of unstructured and structured data.
+Integrate and deploy Large Language Models (LLMs), Vision-Language Models (VLMs), and other machine learning capabilities into production applications.
+Build Retrieval-Augmented Generation (RAG) systems and other retrieval architectures for complex evidence datasets.
+Develop solutions for structured data retrieval, including query planning, semantic modeling, and structured reasoning.
+Build reliable data flows and integrations across AI models, backend services, and infrastructure.
+Deploy, monitor, and optimize production systems in security-sensitive environments.
+Evaluate emerging AI models, frameworks, and infrastructure approaches to improve platform capabilities.
+Take ownership of technical decisions, from initial design through implementation, testing, deployment, and ongoing improvements.
+Collaborate closely with the founding team to define architecture, product direction, and engineering priorities.
+
+Required Qualifications
+1. Backend Engineering and Distributed Systems
+Strong backend software engineering experience, particularly building production-grade applications.
+Ability to design resilient, secure, and scalable distributed systems.
+Strong programming skills, especially in Python.
+Experience working with cloud infrastructure providers, backend services, and production deployments.
+Ability to own technical solutions end to end.
+2. Applied AI/ML Engineering
+Hands-on experience deploying LLMs, VLMs, or other machine learning models in real-world applications.
+Understanding of integrating AI models into backend systems and production workflows.
+Experience building AI-powered applications beyond prototypes or proof-of-concept projects.
+Ability to evaluate and adopt new models, tools, and AI architectures as the technology evolves.
+3. Retrieval and Data Engineering
+Experience designing RAG pipelines or comparable retrieval systems for unstructured data.
+Ability to work with structured datasets and develop effective retrieval and reasoning mechanisms.
+Understanding of data processing, indexing, search, and retrieval architectures.
+4. Ownership and Startup Mindset
+Demonstrated bias toward action and strong end-to-end ownership.
+Ability to operate effectively in a fast-paced, early-stage startup.
+Comfort working through ambiguity and making technical decisions with incomplete information.
+Strong curiosity and willingness to experiment with emerging technologies.
+5. Mission Alignment
+Genuine interest in applying technology to public safety and law enforcement.
+Motivation to build reliable, secure systems that support sensitive investigative workflows.
+Commitment to high engineering standards and meaningful real-world impact.
+Preferred Qualifications
+Experience building agentic AI systems that can reason, plan, and take actions across data sources.
+Experience working with multimodal AI, including video, audio, and text processing.
+Experience with AI-driven search, evidence analysis, or other complex information retrieval applications.
+Experience developing secure systems for government, public-sector, or other sensitive environments.
+Previous experience at an early-stage startup or as an early engineering hire.
+
+Technical Skills and Technologies
+Technical area
+Relevant skills
+Backend development
+Python, backend architecture, API development
+AI/ML
+LLMs, VLMs, applied machine learning
+Retrieval systems
+RAG, information retrieval, semantic search
+Structured data
+Query planning, semantic modeling, structured reasoning
+AI agents
+Agentic workflows, reasoning and tool use
+Infrastructure
+Cloud platforms, distributed systems, production deployment
+Data processing
+Large-scale video, audio, text, and structured datasets
+Security and reliability
+Secure architecture, resilient systems, production monitoring
+
+Note: React is mentioned in the original description, but its specific importance is unclear. The role emphasizes backend engineering and AI integration rather than frontend development.

@@ -1,0 +1,133 @@
+We are looking for a Forward Deployed Engineer to make Foley’s go-to-market engine truly AI-native. Not someone who can talk about AI agents for outbound, but someone who has built them, put them in front of real buyers, and can show us what they did to pipeline, conversion, or cost per lead.
+
+Foley helps companies hire, screen, and monitor drivers through DOT and FMCSA compliance, MVRs, drug and alcohol testing, background checks, and the Clearinghouse. Our customers range from a five-truck owner-operator buying online at night to national fleets with procurement teams, and we sell to both. You’ll be the growth engineer for our entire go-to-market team: marketing, product marketing, and sales. Behind you is a live AI platform, a governed path to production, and a small team of builders already shipping.
+
+This is a generator role, not a coordinator role. You take a hypothesis, turn it into an experiment, build what it needs, ship it, and read the result. Take away the agency, the vendors, and the ticket queue, and you can still move pipeline with a laptop, an API key, and access to the CRM.
+
+What You’ll Do
+Run the Growth Experiment Engine
+Turn marketing, product marketing, and sales hypotheses into experiments across messaging, channels, targeting, offers, pricing pages, and sales plays
+
+Design experiments with a control, a metric chosen in advance, and enough volume to trust the result
+
+Run a high volume of tests, kill losers fast, scale winners, and maintain a learning log so no test runs twice
+
+Build the Agents That Do the Work
+Build research and enrichment agents that know an account before a rep does
+
+Build signal and trigger detection for events like new DOT authority, fleet growth, safety events, and upcoming renewals
+
+Own lead scoring, qualification, and routing so every lead is worked by the right person or agent
+
+Run personalized outbound and lifecycle programs at scale, with deliverability you own
+
+Instrument tracking and attribution so we can see what’s working
+
+Support Product Marketing
+Test positioning and messaging against real buyers
+
+Launch with targeting, pages, and follow-up already wired
+
+Turn sales calls, win/loss data, and competitor moves into insight product marketing can use
+
+Build content and SEO/GEO tooling so our compliance expertise shows up where buyers are looking
+
+Support Sales
+Deliver prospect research and account prep reps don’t have time for
+
+Surface signals that tell reps who to call and why now
+
+Build tools that cut admin time and give reps more time to sell
+
+Make sure smaller deals get worked by systems built to work them well
+
+Build on the Platform, Not Around It
+Build go-to-market agents on Foley’s AI platform and shared ontology rather than a separate growth stack
+
+Contribute connectors, skills, and signals other teams can reuse
+
+Add go-to-market concepts to the ontology so marketing, sales, customer success, and product describe every account the same way
+
+Operate with Judgment & Guardrails
+Ship everything through our review and release gates
+
+Handle consent, PII, and email/SMS/calling rules from day one
+
+Build systems that are still running and trusted six months from now
+
+Contribute to the Team
+Participate in marketing, product marketing, and sales meetings as part of the team; their leaders set the priorities
+
+Partner with RevOps, the data team, and other builders across Foley
+
+Share what you build and help the people around you move faster
+
+Who You Are
+We’re looking for builders with proven results. When we ask what your work did to the number, your answer is a number.
+
+You might come from:
+
+GTM Engineer: You built the outbound and enrichment machine at a startup or scale-up, owned deliverability, and can tell us exactly what it did to pipeline, including how you handled a bad week
+
+Growth Engineer: You ran experimentation, instrumentation, and attribution for a product or funnel, and want to apply it to a sales-led and self-serve motion at the same time
+
+Founder or Operator Turned Builder: You stood up a go-to-market motion from zero, built the agents and landing pages yourself, and grew a number
+
+Must-haves
+
+You have driven measurable growth results with AI and agents (pipeline, meetings, conversion, cost per lead or acquisition, or revenue) and can explain how you measured them
+
+You have designed and run many experiments, understand what control groups and sample sizes are for, and can walk us through tests that failed
+
+You build it yourself, using Python, SQL, APIs, webhooks, LLMs, agents, and Claude Code or similar
+
+You have hands-on experience with CRM and marketing automation platforms (Salesforce, HubSpot, or similar), plus enrichment and sequencing tools
+
+You understand how B2B demand is created and converted, and what a good lead, message, and sales play look like
+
+You have contributed to a shared platform, data model, or internal tooling other teams relied on
+
+Marketers, product marketers, reps, and sales leaders trust what you build and like working with you
+
+Strong Signals
+
+You’ve stood up a motion, product, or company from zero
+
+You’ve worked on small business and self-serve funnels alongside a sales-led motion
+
+You have product marketing experience in positioning, launches, competitive intel, or win/loss
+
+You have a current point of view on SEO and generative engine optimization
+
+You’ve turned Gong or call data into signals or content
+
+You’ve built evals or observability for an AI system
+
+You’ve done ontology, knowledge graph, or semantic layer work modeling accounts, entities, or GTM concepts
+
+You’ve worked in transportation, compliance, regtech, or another regulated market
+
+Location: This role is primarily remote (US based), with the expectation of occasional visits to our offices for team collaboration, training, or company events.
+
+This role may be based remotely out of the following states: Arizona, California, Colorado, Connecticut, Florida, Georgia, Illinois, Indiana, Kansas, Massachusetts, Maryland, Michigan, Missouri, Nebraska, New Hampshire, New Jersey, New York, North Carolina, Pennsylvania, Rhode Island, South Carolina, Tennessee, Texas, Virginia, Wisconsin
+
+About us
+At Foley, we’re reimagining how safety-sensitive industries hire, stay compliant, and manage risk. We’ve evolved into a modern SaaS company with an all-in-one, AI-ready platform that helps transportation, construction, distribution, and utility businesses operate faster, smarter, and safer.
+
+As we continue to grow, we’re looking for curious, strategic thinkers who thrive in complexity, are motivated by making an impact, and want to join a team that’s passionate about building great products and supporting customers. Our core values — Teammateship, Grit, and Innovation — guide everything we do. Whether we’re collaborating internally or helping customers, we approach every challenge with optimism, humor, and a shared commitment to success.
+
+Benefits
+Foley offers a comprehensive benefits package that includes medical, dental, and vision coverage, a 401(k) with company match, paid time off and holidays, wellness programs, and an employee assistance program.
+
+Equal Employment Opportunity
+Foley is an Equal Opportunity Employer. We celebrate diversity and are committed to creating an inclusive environment for all employees. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity or expression, national origin, age, disability, protected veteran status, or any other legally protected characteristic.
+
+Reasonable Accommodations
+If you require a reasonable accommodation during the application or interview process, please contact us at careers@foley.io
+
+Employment Status
+Employment with Foley is on an at-will basis. Nothing in this job posting or in future communications should be construed as a contract of employment.
+
+Massachusetts Applicants: It is unlawful in Massachusetts to require or administer a lie detector test as a condition of employment or continued employment. An employer who violates this law shall be subject to criminal penalties and civil liability.
+
+Privacy Policy: Please see our Applicant Privacy Policy for more information on how Foley processes your personal information during the recruitment process and, if applicable based on your location, how you can exercise any privacy rights.

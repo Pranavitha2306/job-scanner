@@ -1,0 +1,55 @@
+Software Engineer - AI Team
+Who we are
+
+Bowery Valuation is one of the leading startups in the emerging world of real estate tech and the only company of its kind in the commercial real estate appraisal space. We are also the first-ever venture capital-backed commercial appraisal firm, having raised over $80MM.  Powered by big data, advanced technology, and extensive expertise, Bowery is redefining the entire commercial appraisal space.
+
+
+
+Inside Bowery, we’re a people-forward company dedicated to providing a productive and inspiring working culture. We are a collection of hard-working and enthusiastic types focused on building great teams to support great work. We balance our dedication to success with a commitment to gratitude, kindness, and a team-first attitude. 
+
+About the Role
+Bowery is in a new phase: rethinking the whole appraisal process with AI at the core. We’re hiring a Software Engineer to join our AI-first engineering team, reporting to our Head of Technology.
+
+As the first truly tech-enabled appraisal firm - having raised over $80mm backed by Goldman Sachs, Capital One, and numerous venture funds - Bowery has a strong foundation to build on: a proprietary appraisal-writing platform, high-quality data, and a team of 100+ appraisers across 17 offices from more than 1,000 clients. We’ve grown over 30% year-over-year and are fully profitable.
+
+Few industries are better suited for AI than appraisal. The work is structured, repetitive, and data-driven, and it pulls from fragmented sources. We want to use AI to turbocharge appraisers, who can spend their time on judgment, comparables, and compliance instead of data entry. The result will be a better product for our clients and a transformation in the industry.
+
+This is a senior engineering role, not a prompt-writing role. We want someone with a strong software engineering foundation who also uses AI tools like Claude Code and Codex to get far more done than they could alone. You’ll make product decisions, own systems end to end, and hold a high bar for how they’re built.
+
+Bowery is a post-Series B company with clear product-market fit and material scale, but with a small engineering team. You get the security and data of a late-stage startup with the impact of a very early one.
+
+What You’ll Do
+Design, build, and ship features end to end across our appraisal platform and AI-powered workflows, from data extraction and analysis to narrative generation
+Work directly with appraisers and Ops to understand the problem, decide what to build, and make the product calls to get it shipped
+Use AI coding tools (Claude Code, Codex, or similar) every day, and help shape how the team uses them well, including knowing where not to trust them
+Build LLM-backed features with evaluation, testing, and monitoring in place so quality is measured, not guessed at
+Own infrastructure and deployments on AWS, including CI/CD with GitHub Actions, infrastructure as code with Terraform, and containerized services with Docker
+Keep the bar high on system design, code review, testing, and observability as we move faster
+Experience and Skills
+4+ years building and shipping production software, ideally including time at an early-stage or fast-moving company
+Strong fundamentals in system design, data modeling, APIs, and testing
+Fluent in TypeScript and Node.js; React experience is a plus
+AI coding agents (Claude Code, Codex, or similar) are a real part of how you work today, and you have opinions on how to use them without giving up quality
+Experience building with LLMs: prompt design, RAG, structured outputs, and evals
+Experience with AWS preferred, along with GitHub Actions, Terraform, and Docker
+Why You’d Be a Good Fit
+You want ownership. You’d rather figure out what should be built than wait for a fully specced ticket, and you’re comfortable making and defending product decisions.
+You think critically. You use AI to multiply your output, and you review its work the way you’d review a teammate’s. You know when something is good enough to ship and when it isn’t.
+You care how things are built. Speed matters, but so do clean interfaces, tests, and systems that the next engineer can understand.
+You enjoy having direct access to end users. Our core users (appraisers and Ops teams) are all in-house, so you’d be iterating with a tight feedback loop. Many of them work 3x/week from our office in Cooper Square.
+You value a remote-first eng culture. Our engineers prioritize async communication and make space for deep focus time to help us ship faster.
+Why You Might Not Be a Good Fit
+You want well-defined tickets and a narrow scope. This role means wearing many hats and working through ambiguity with the business.
+You’d rather not use AI tools in your work. They’re central to how our team operates and how we expect to scale.
+You’d ship code you don’t understand. AI-generated code still needs to meet our engineering standards, and you own what you merge.
+Bowery’s Tech Stack
+Languages: TypeScript, JavaScript
+Frontend: React
+Backend: Node.js (NestJS framework)
+Database: MongoDB, Postgres
+Infrastructure: AWS, Docker, Terraform, GitHub Actions
+Bowery Leadership
+John Meadows, Chief Executive Officer; LinkedIn
+Madeline Pinkner, Head of Technology; LinkedIn
+Eliot Jenkins, President and Chief Operating Officer; LinkedIn
+Steve Schaller, Chief Revenue Officer; LinkedIn
