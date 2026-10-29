@@ -124,6 +124,33 @@ llm:
   # Only jobs with a keyword score at or above this get LLM-scored.
   prefilter_min: 50
 
+# Job boards that list jobs from many companies (catches companies not in companies/*.txt).
+job_boards:
+  enabled: true
+  linkedin:            # free, every scan (LinkedIn's public job search, no login)
+    enabled: true
+    pages: 6           # 10 jobs per page per search
+    queries:
+      - AI engineer
+      - machine learning engineer
+      - ML engineer
+      - LLM engineer
+      - generative AI engineer
+      - applied AI engineer
+      - MLOps engineer
+      - AI forward deployed engineer
+  apify:               # Built In, Hiring Cafe, Jobright via Apify; needs the APIFY_TOKEN secret
+    enabled: true
+    run_hours_utc: [15, 16]     # once a day: the 9:00 AM Central scan
+    monthly_budget_usd: 4.5     # skip Apify once this month's usage reaches this (free credit is $5)
+    per_actor_max_usd: 0.06     # hard cost cap per Actor run
+    posted_within_days: 1
+    builtin_queries: [machine learning engineer]
+    hiringcafe_keyword: machine learning engineer
+    hiringcafe_max: 30
+    jobright_queries: [AI engineer, machine learning engineer]
+    jobright_max: 20
+
 # Sources to scan. Core platforms (fast, API-based):
 sources:
   greenhouse: true

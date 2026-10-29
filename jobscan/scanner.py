@@ -32,11 +32,12 @@ from zoneinfo import ZoneInfo
 import aiohttp
 import yaml
 
-from . import extended, fetchers, llm, matching, notify
+from . import extended, fetchers, jobboards, llm, matching, notify
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCAL_TZ = ZoneInfo("America/Chicago")
 CORE = set(fetchers.LISTERS)
+BOARD_SOURCES = {"linkedin", "builtin", "hiringcafe", "jobright"}
 
 
 # ---------------------------------------------------------------------------
@@ -157,6 +158,15 @@ async def scan(args) -> None:
 
         listed = await asyncio.gather(*(list_board(s, c) for s, c in boards))
 
+        # Job boards (LinkedIn, Built In, Hiring Cafe, Jobright): companies not in our lists.
+        bcfg = cfg.get("job_boards", {}) or {}
+        if not args.company and bcfg.get("enabled", True):
+            board_posts = await jobboards.fetch_all(session, bcfg, now, cfg.get("lookback_hours", 30),
+                                                    force_apify=args.boards_now)
+            stats["job_boards"] = {k: len(v) for k, v in board_posts.items()}
+            print("Job boards: " + ", ".join(f"{k} {len(v)}" for k, v in board_posts.items()))
+            listed += [(src, src, posts) for src, posts in board_posts.items()]
+
         # ---- 2. Cheap filters (title, company, freshness, location) ------------------
         ai_titles: list[fetchers.Posting] = []
         generic_titles: list[fetchers.Posting] = []
@@ -201,8 +211,17 @@ async def scan(args) -> None:
         # ---- 3. Read job descriptions ------------------------------------------------
         to_describe = ai_titles + generic_titles
 
+        li_sem = asyncio.Semaphore(2)
+
         async def describe(p):
-            if p.description or p.source not in CORE:
+            if p.description:
+                return
+            if p.source == "linkedin":
+                async with li_sem:
+                    p.description = await jobboards.linkedin_description(session, p)
+                    await asyncio.sleep(0.5)
+                return
+            if p.source not in CORE:
                 return
             async with sem:
                 try:
@@ -210,7 +229,8 @@ async def scan(args) -> None:
                 except Exception:  # noqa: BLE001
                     p.description = ""
         await asyncio.gather(*(describe(p) for p in to_describe))
-        await extended.describe_library([p for p in to_describe if p.source not in CORE and p.source != "custom"])
+        await extended.describe_library([p for p in to_describe if p.source not in CORE and p.source != "custom"
+                                          and p.source not in BOARD_SOURCES])
 
         # Generic titles survive only if the JD is clearly AI/ML work.
         generic_ai = [p for p in generic_titles if matching.ai_intensity(p.description) >= min_ai]
@@ -252,7 +272,7 @@ async def scan(args) -> None:
                     flags.append("off-target: " + ", ".join(off))
             row = dict(match=score, company=p.company, title=p.title, location=p.location,
                        posted=format_posted(p.posted_at, now),
-                       url=p.url, source=p.source, years=yrs or "", comp=p.extra.get("comp", ""),
+                       url=p.url, source=p.source, years=yrs or "", comp=" · ".join(x for x in (p.extra.get("comp", ""), p.extra.get("h1b", "")) if x),
                        summary="" if text else "Couldn't read the job description; check it yourself.",
                        gaps=", ".join(miss[:4]), flags="; ".join(flags), _p=p)
             if flags:
@@ -367,6 +387,7 @@ def main() -> None:
     ap.add_argument("--company", help="scan one site, e.g. ashby:openai, greenhouse:stripe, icims:<slug>")
     ap.add_argument("--no-llm", action="store_true")
     ap.add_argument("--always-send", action="store_true", help="send even when there are no matches")
+    ap.add_argument("--boards-now", action="store_true", help="also run the daily Apify job boards this run")
     asyncio.run(scan(ap.parse_args()))
 
 

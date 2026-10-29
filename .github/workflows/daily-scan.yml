@@ -2,9 +2,9 @@ name: Daily AI/ML job scan
 
 on:
   schedule:
-    # Times are UTC, set for Central Standard Time (UTC-6):
-    - cron: "30 12 * * *"   # 6:30 AM Central
-    - cron: "30 15 * * *"   # 9:30 AM Central
+    # Times are UTC, set for Central Standard Time (UTC-6). GitHub often starts runs 10-30 min late.
+    - cron: "37 12 * * *"   # 6:37 AM Central
+    - cron: "0 15 * * *"    # 9:00 AM Central (also runs Built In / Hiring Cafe / Jobright)
     - cron: "0 20 * * *"    # 2:00 PM Central
     - cron: "0 0 * * *"     # 6:00 PM Central
   workflow_dispatch:
@@ -13,6 +13,10 @@ on:
         description: "Only N companies per source (blank = all)"
         required: false
         default: ""
+      boards_now:
+        description: "Also run Built In / Hiring Cafe / Jobright now (uses Apify credit)"
+        required: false
+        default: "no"
       only:
         description: "all = every source, core = the 5 main platforms"
         required: false
@@ -49,12 +53,14 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: |
           ONLY="${{ github.event.inputs.only }}"
           if [ -z "$ONLY" ]; then
             ONLY=all
           fi
           ARGS="--only $ONLY --always-send"
+          if [ "${{ github.event.inputs.boards_now }}" = "yes" ]; then ARGS="$ARGS --boards-now"; fi
           if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"; fi
           python -m jobscan.scanner $ARGS
 

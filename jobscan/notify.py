@@ -18,6 +18,8 @@ def _line(r: dict) -> str:
     bits = [f"**{r['match']}%**", f"{r['company']} - {r['title']}", r["location"] or "", f"posted {posted}"]
     if r.get("comp"):
         bits.append(r["comp"])
+    if r.get("source") in BOARD_NAMES:
+        bits.append(f"via {BOARD_NAMES[r['source']]}")
     s = " | ".join(b for b in bits if b)
     s += f"\n  Apply: {r['url']}"
     if r.get("summary"):
@@ -27,6 +29,9 @@ def _line(r: dict) -> str:
     if r.get("years"):
         s += f"  (asks {r['years']}+ yrs)"
     return s
+
+
+BOARD_NAMES = {"linkedin": "LinkedIn", "builtin": "Built In", "hiringcafe": "Hiring Cafe", "jobright": "Jobright"}
 
 
 def peak_hours(hours: dict, top: int = 3) -> str:
@@ -57,7 +62,9 @@ def build_markdown(day: str, strong: list[dict], close: list[dict], stats: dict)
                f"(no sponsorship, citizens/green card only, clearance, federal/export control, intern/student, too senior, "
                f"another language, freelance/part-time, or core skills outside your resume); "
                f"{stats.get('non_us', 0):,} remote jobs dropped as outside the US; "
-               f"{stats.get('duplicates_removed', 0):,} duplicate postings merged.")
+               f"{stats.get('duplicates_removed', 0):,} duplicate postings merged."
+               + (" Job boards: " + ", ".join(f"{k} {v}" for k, v in stats["job_boards"].items()) + "."
+                  if stats.get("job_boards") else ""))
     ph = peak_hours(stats.get("posting_hours", {}))
     if ph:
         out += ["", ph]
@@ -78,7 +85,8 @@ def build_html(md_strong: list[dict], md_close: list[dict], day: str, stats: dic
     def rows(items):
         h = []
         for r in items:
-            extra = " &middot; ".join(html.escape(x) for x in [r.get("location", ""), f"posted {r['posted']}", r.get("comp", "")] if x)
+            extra = " &middot; ".join(html.escape(x) for x in [r.get("location", ""), f"posted {r['posted']}", r.get("comp", ""),
+                                                        f"via {BOARD_NAMES[r['source']]}" if r.get("source") in BOARD_NAMES else ""] if x)
             h.append(
                 f"<li style='margin-bottom:10px'><b>{r['match']}%</b> &nbsp;"
                 f"<a href='{html.escape(r['url'])}'>{html.escape(r['company'])} &ndash; {html.escape(r['title'])}</a>"
