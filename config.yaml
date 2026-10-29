@@ -83,7 +83,6 @@ title_exclude:
   - 'trainer'
   - 'tutor'
   - 'annotat'
-  - '\bIII\b'
   - '\bIV\b'
   - 'full[- ]?stack'
   - 'front[- ]?end'
