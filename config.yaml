@@ -90,6 +90,8 @@ title_exclude:
   - 'database administrator'
   - 'freelance'
   - 'part[- ]time'
+  - 'talent (pool|community|network)'
+  - 'general application'
   - '\bconsultant\b'
   - '\bspecialist\b'
   - '\(m/w/d\)'
