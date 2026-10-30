@@ -551,8 +551,8 @@ def language_problem(title: str, description: str) -> str:
 _EMPLOYMENT_RE = re.compile(
     r"\bfreelance\b|independent contractor|\b1099\b|\bpart[- ]time\b|hours (of work )?per month|"
     r"business process outsourcing|\bbpo\b|remote - contracted|contract(ed)? position for international|"
-    r"joining the pool doesn.t mean|hear from us when a project fits|this is a general application|"
-    r"this (posting|requisition) is (an )?evergreen|not (tied to|for) a specific (open )?(role|position)",
+    r"talent pool|talent community|talent network|join our (pool|network|community)|general application|"
+    r"joining the pool doesn.t mean|hear from us when a project fits|evergreen (posting|requisition)",
     re.IGNORECASE)
 
 
