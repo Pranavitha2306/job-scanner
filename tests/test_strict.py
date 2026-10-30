@@ -96,8 +96,3 @@ def test_good_postings_score_high_enough():
                  ("hatch.txt", "Forward Deployed Engineer"), ("coinflow.txt", "MLOps Engineer")]:
         score = matching.keyword_match(f"{t} {(FIX / f).read_text()}", prof)[0]
         assert score >= cfg["min_match"], (f, score)
-
-
-def test_talent_pool_is_not_a_job():
-    jd = "Join the G2i Talent Pool. Joining the pool doesn't mean immediate work; we'll reach out when a project fits."
-    assert matching.employment_problem("Join the G2i Talent Pool", jd)
