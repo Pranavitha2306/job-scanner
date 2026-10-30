@@ -1,12 +1,12 @@
 name: Daily AI/ML job scan
 
 on:
-  schedule:
-    # Times are UTC, set for Central Standard Time (UTC-6). GitHub often starts runs 10-30 min late.
-    - cron: "37 12 * * *"   # 6:37 AM Central
-    - cron: "0 15 * * *"    # 9:00 AM Central (also runs Built In / Hiring Cafe / Jobright)
-    - cron: "0 20 * * *"    # 2:00 PM Central
-    - cron: "0 0 * * *"     # 6:00 PM Central
+  # Runs are started by Claude scheduled tasks (6:37 AM, 8:44 AM with job boards,
+  # 1:40 PM, 5:40 PM Central, DST-aware) via workflow_dispatch, because GitHub's
+  # own schedule was starting runs hours late or skipping them.
+  # To go back to GitHub's schedule, restore a block like:
+  # schedule:
+  #   - cron: "37 12 * * *"   # UTC
   workflow_dispatch:
     inputs:
       limit:
