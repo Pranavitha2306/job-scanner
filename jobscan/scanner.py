@@ -70,9 +70,10 @@ def format_posted(posted_at: datetime | None, now: datetime) -> str:
     hours = max(0, (now - posted_at).total_seconds() / 3600)
     ago = f"{int(hours * 60)}m ago" if hours < 1 else f"{int(hours)}h ago" if hours < 48 else f"{int(hours // 24)}d ago"
     utc = posted_at.astimezone(timezone.utc)
+    day = f"{local:%b %d}" + (f", {local:%Y}" if local.year != now.astimezone(LOCAL_TZ).year else "")
     if utc.hour == 0 and utc.minute == 0 and utc.second == 0:
-        return f"{local:%b %d} ({ago})"  # date-only from the site
-    return f"{local:%b %d, %I:%M %p} CT ({ago})".replace(" 0", " ")
+        return f"{day} ({ago})"  # date-only from the site
+    return f"{day}, {local:%I:%M %p} CT ({ago})".replace(" 0", " ")
 
 
 def load_resume() -> str:
@@ -244,6 +245,11 @@ async def scan(args) -> None:
         max_years = cfg.get("max_years_required", 6)
         for p in candidates:
             text = p.description or ""
+            if not args.company and p.posted_at and p.posted_at < cutoff:
+                # Some sites only show the posting date on the job page, read after the
+                # freshness check above. Old jobs found that way are dropped here.
+                stats["stale"] = stats.get("stale", 0) + 1
+                continue
             if p.country and not matching.is_us_location(p.location, p.country, us_places):
                 continue
             if not matching.description_location_ok(p.location, text):

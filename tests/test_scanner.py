@@ -279,6 +279,7 @@ def test_format_posted():
     assert format_posted(datetime(2026, 10, 28, 17, 14, tzinfo=timezone.utc), now) == "Oct 28, 12:14 PM CT (2h ago)"
     assert format_posted(datetime(2026, 10, 27, 0, 0, tzinfo=timezone.utc), now) == "Oct 26 (44h ago)"
     assert "not listed" in format_posted(None, now)
+    assert format_posted(datetime(2024, 10, 30, 0, 4, tzinfo=timezone.utc), now).startswith("Oct 29, 2024, 7:04 PM CT (728d ago)")
 
 
 def test_bamboohr_parse():
