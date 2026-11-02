@@ -39,7 +39,10 @@ def title_ok(title: str, include: list[re.Pattern], exclude: list[re.Pattern]) -
 
 def company_excluded(company: str, excluded: list[str]) -> bool:
     c = (company or "").lower()
-    return any(re.search(rf"\b{re.escape(e.lower())}\b", c) for e in excluded)
+    # Match at the start of a word but allow run-together names
+    # ("JPMorganChase", "AmazonWebServices", "Amazon.com Services LLC").
+    return any(re.search(rf"\b{re.escape(e.lower())}", c.replace(" ", "")) or
+               re.search(rf"\b{re.escape(e.lower())}", c) for e in excluded)
 
 
 # ---------------------------------------------------------------------------
