@@ -206,6 +206,22 @@ def map_jobright(items: list[dict]) -> list[Posting]:
     return out
 
 
+def map_dice(items: list[dict]) -> list[Posting]:
+    out = []
+    for it in items:
+        if not it.get("id") or not it.get("title") or it.get("isRepost") or it.get("isExpired"):
+            continue
+        loc = it.get("location") or ", ".join(x for x in (it.get("city"), it.get("state")) if x)
+        out.append(Posting(
+            source="dice", company=it.get("company") or "", slug="dice", job_id=str(it["id"]),
+            title=it["title"], location=loc or ("Remote" if it.get("remote") else ""),
+            url=it.get("url") or it.get("applyUrl") or "", posted_at=_dt(it.get("postedDate")),
+            description=clean_text(it.get("description_text") or it.get("description_html") or ""),
+            extra={"comp": it.get("payRate") or "",
+                   "h1b": "Willing to sponsor" if it.get("willingToSponsor") else ""}))
+    return out
+
+
 async def apify_sources(session: aiohttp.ClientSession, cfg: dict) -> dict[str, list[Posting]]:
     token = os.environ.get("APIFY_TOKEN", "").strip()
     if not token:
@@ -231,9 +247,14 @@ async def apify_sources(session: aiohttp.ClientSession, cfg: dict) -> dict[str, 
             "searchQueries": cfg.get("jobright_queries", ["AI engineer", "machine learning engineer"]),
             "country": "us", "datePosted": "24h", "experienceLevel": ["entry", "mid"],
             "jobTypes": ["full_time"], "maxItems": int(cfg.get("jobright_max", 20))}, cap),
+        "dice": apify_run(session, token, "memo23/apify-dice-scraper", {
+            "keywords": cfg.get("dice_queries", ["AI engineer", "machine learning engineer"]),
+            "location": "United States", "countryCode": "US", "postedDate": "ONE",
+            "employmentType": ["FULLTIME"], "skipReposts": True,
+            "maxItems": int(cfg.get("dice_max", 30))}, cap),
     }
     results = await asyncio.gather(*tasks.values())
-    mappers = {"builtin": map_builtin, "hiringcafe": map_hiringcafe, "jobright": map_jobright}
+    mappers = {"builtin": map_builtin, "hiringcafe": map_hiringcafe, "jobright": map_jobright, "dice": map_dice}
     return {name: mappers[name](items) for name, items in zip(tasks, results)}
 
 

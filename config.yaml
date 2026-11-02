@@ -139,7 +139,7 @@ job_boards:
       - applied AI engineer
       - MLOps engineer
       - AI forward deployed engineer
-  apify:               # Built In, Hiring Cafe, Jobright via Apify; needs the APIFY_TOKEN secret
+  apify:               # Hiring Cafe, Built In, Jobright, Dice via Apify; needs the APIFY_TOKEN secret
     enabled: true
     run_hours_utc: [15, 16]     # once a day: the 9:00 AM Central scan
     monthly_budget_usd: 4.5     # skip Apify once this month's usage reaches this (free credit is $5)
@@ -150,6 +150,11 @@ job_boards:
     hiringcafe_max: 30
     jobright_queries: [AI engineer, machine learning engineer]
     jobright_max: 20
+    dice_queries: [AI engineer, machine learning engineer]   # Dice; reposts skipped
+    dice_max: 30
+
+# Order of jobs in the email: company career sites first, then each job board.
+source_order: [career_sites, hiringcafe, builtin, linkedin, jobright, dice]
 
 # Sources to scan. Core platforms (fast, API-based):
 sources:

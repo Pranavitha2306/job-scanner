@@ -37,7 +37,7 @@ from . import extended, fetchers, jobboards, llm, matching, notify
 ROOT = Path(__file__).resolve().parent.parent
 LOCAL_TZ = ZoneInfo("America/Chicago")
 CORE = set(fetchers.LISTERS)
-BOARD_SOURCES = {"linkedin", "builtin", "hiringcafe", "jobright"}
+BOARD_SOURCES = {"linkedin", "builtin", "hiringcafe", "jobright", "dice"}
 
 
 # ---------------------------------------------------------------------------
@@ -351,7 +351,15 @@ async def scan(args) -> None:
     scored = list(merged.values())
 
     # ---- 7. Digest ---------------------------------------------------------------------
-    scored.sort(key=lambda r: -r["match"])
+    # List jobs grouped by source in the order set in config.yaml (career sites first),
+    # best match first within each source.
+    order = [s.lower() for s in cfg.get("source_order", ["career_sites", "hiringcafe", "builtin",
+                                                          "linkedin", "jobright", "dice"])]
+
+    def _rank(r):
+        src = r.get("source") if r.get("source") in BOARD_SOURCES else "career_sites"
+        return order.index(src) if src in order else len(order)
+    scored.sort(key=lambda r: (_rank(r), -r["match"]))
     strong = [r for r in scored if r["match"] >= cfg.get("min_match", 70)]
     close = [r for r in scored if cfg.get("near_miss_min", 60) <= r["match"] < cfg.get("min_match", 70)]
     day = datetime.now(LOCAL_TZ).strftime("%Y-%m-%d")

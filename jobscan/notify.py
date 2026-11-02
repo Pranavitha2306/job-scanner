@@ -31,7 +31,7 @@ def _line(r: dict) -> str:
     return s
 
 
-BOARD_NAMES = {"linkedin": "LinkedIn", "builtin": "Built In", "hiringcafe": "Hiring Cafe", "jobright": "Jobright"}
+BOARD_NAMES = {"linkedin": "LinkedIn", "builtin": "Built In", "hiringcafe": "Hiring Cafe", "jobright": "Jobright", "dice": "Dice"}
 
 
 def peak_hours(hours: dict, top: int = 3) -> str:
