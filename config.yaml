@@ -139,6 +139,28 @@ job_boards:
       - applied AI engineer
       - MLOps engineer
       - AI forward deployed engineer
+  hackernews:          # free: the monthly "Ask HN: Who is hiring?" thread (startups, founders post directly)
+    enabled: true
+  vc_boards:           # free: VC firms' portfolio job boards (startups that rarely post on LinkedIn)
+    enabled: true      # boards that can't be read automatically are skipped
+    queries: [machine learning engineer, AI engineer, LLM engineer, forward deployed engineer]
+    boards:
+      a16z: https://portfoliojobs.a16z.com
+      sequoia: https://jobs.sequoiacap.com
+      index: https://www.indexventures.com/startup-jobs
+      general_catalyst: https://jobs.generalcatalyst.com
+      khosla: https://jobs.khoslaventures.com
+      greylock: https://greylock.com/jobs/portfolio-jobs
+      kleiner_perkins: https://jobs.kleinerperkins.com
+      accel: https://jobs.accel.com
+      lightspeed: https://jobs.lsvp.com
+      thrive: https://jobs.thrivecap.com
+      bessemer: https://jobs.bvp.com
+      felicis: https://jobs.felicis.com
+      lux: https://jobs.luxcapital.com
+      crv: https://jobs.crv.com
+      8vc: https://jobs.8vc.com
+      notable: https://jobs.ggvc.com
   apify:               # Hiring Cafe, Built In, Jobright, Dice via Apify; needs the APIFY_TOKEN secret
     enabled: true
     run_hours_utc: [15, 16]     # once a day: the 9:00 AM Central scan
@@ -154,7 +176,7 @@ job_boards:
     dice_max: 30
 
 # Order of jobs in the email: company career sites first, then each job board.
-source_order: [career_sites, hiringcafe, builtin, linkedin, jobright, dice]
+source_order: [career_sites, hiringcafe, builtin, vcboards, hackernews, linkedin, jobright, dice]
 
 # Sources to scan. Core platforms (fast, API-based):
 sources:

@@ -37,7 +37,7 @@ from . import extended, fetchers, jobboards, llm, matching, notify
 ROOT = Path(__file__).resolve().parent.parent
 LOCAL_TZ = ZoneInfo("America/Chicago")
 CORE = set(fetchers.LISTERS)
-BOARD_SOURCES = {"linkedin", "builtin", "hiringcafe", "jobright", "dice"}
+BOARD_SOURCES = {"linkedin", "builtin", "hiringcafe", "jobright", "dice", "hackernews", "vcboards"}
 
 
 # ---------------------------------------------------------------------------
@@ -221,6 +221,10 @@ async def scan(args) -> None:
                 async with li_sem:
                     p.description = await jobboards.linkedin_description(session, p)
                     await asyncio.sleep(0.5)
+                return
+            if p.source == "vcboards":
+                async with li_sem:
+                    p.description = await jobboards.page_text(session, p.url)
                 return
             if p.source not in CORE:
                 return

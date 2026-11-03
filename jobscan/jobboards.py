@@ -258,6 +258,150 @@ async def apify_sources(session: aiohttp.ClientSession, cfg: dict) -> dict[str, 
     return {name: mappers[name](items) for name, items in zip(tasks, results)}
 
 
+# ---------------------------------------------------------------------------
+# Hacker News "Ask HN: Who is hiring?" (monthly thread, free public API)
+# ---------------------------------------------------------------------------
+HN_API = "https://hn.algolia.com/api/v1"
+_HN_ROLE = re.compile(r"\b(ai|ml|machine learning|llm|genai|generative ai|applied (ai|ml)|mlops|"
+                      r"forward deployed|data scientist)\b", re.I)
+_HN_VISA = re.compile(r"\bvisas?\b", re.I)
+_HN_NO_VISA = re.compile(r"\b(no|not|without)\b[^|\n]{0,20}\bvisas?\b|\bvisas?\b[^|\n]{0,20}\b(not|no)\b", re.I)
+
+
+def parse_hn_comment(c: dict) -> Posting | None:
+    """One top-level comment -> Posting. HN posts start with 'Company | Role | Location | ...'."""
+    raw = c.get("text") or ""
+    if not raw or not c.get("id"):
+        return None
+    head = clean_text(re.split(r"(?i)<p>", raw, maxsplit=1)[0])
+    parts = [s.strip() for s in head.split("|") if s.strip()]
+    if len(parts) < 2:
+        return None
+    company = re.sub(r"\s*\(.*?\)\s*$", "", parts[0])[:80]
+    rest = parts[1:]
+    role = next((s for s in rest if _HN_ROLE.search(s) and re.search(r"(?i)engineer|scientist|developer|ml|ai", s)),
+                None)
+    if not role:
+        return None
+    loc_bits = [s for s in rest if s is not role and (re.search(r"(?i)remote|onsite|on-site|hybrid", s)
+                                                      or re.search(r",\s*[A-Z]{2}\b", s)
+                                                      or re.search(r"(?i)\b(usa?|united states|new york|nyc|"
+                                                                   r"san francisco|sf|bay area|seattle|austin|boston|"
+                                                                   r"chicago|dallas|los angeles|denver)\b", s))]
+    location = "; ".join(loc_bits)[:200]
+    visa = "visa sponsorship mentioned" if _HN_VISA.search(head) and not _HN_NO_VISA.search(head) else ""
+    return Posting(
+        source="hackernews", company=company, slug="hackernews", job_id=str(c["id"]),
+        title=role[:150], location=location, url=f"https://news.ycombinator.com/item?id={c['id']}",
+        posted_at=_dt(c.get("created_at")), description=clean_text(raw), extra={"comp": "", "h1b": visa})
+
+
+async def hn_whos_hiring(session: aiohttp.ClientSession) -> list[Posting]:
+    try:
+        async with session.get(f"{HN_API}/search_by_date",
+                               params={"tags": "story,author_whoishiring", "hitsPerPage": "10"},
+                               timeout=aiohttp.ClientTimeout(total=20)) as r:
+            hits = (await r.json()).get("hits", [])
+        story = next((h for h in hits if "who is hiring" in (h.get("title") or "").lower()), None)
+        if not story:
+            return []
+        async with session.get(f"{HN_API}/items/{story['objectID']}",
+                               timeout=aiohttp.ClientTimeout(total=60)) as r:
+            thread = await r.json()
+    except Exception as e:  # noqa: BLE001
+        print(f"  Hacker News: {e}")
+        return []
+    out = []
+    for c in thread.get("children") or []:
+        p = parse_hn_comment(c)
+        if p:
+            out.append(p)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# VC portfolio job boards (most run on Getro). Best effort: a board that can't be read is skipped.
+# ---------------------------------------------------------------------------
+GETRO_API = "https://api.getro.com/api/v2/collections/{cid}/search/jobs"
+_GETRO_ID = re.compile(r'"(?:collectionId|collection_id)"\s*:\s*"?(\d+)|"network"\s*:\s*\{\s*"id"\s*:\s*"?(\d+)')
+
+
+def map_getro(board: str, jobs: list[dict]) -> list[Posting]:
+    out = []
+    for j in jobs:
+        title, url = j.get("title"), j.get("url") or j.get("apply_url")
+        if not title or not url:
+            continue
+        org = j.get("organization") or {}
+        locs = j.get("locations") or j.get("searchable_locations") or []
+        location = "; ".join(x if isinstance(x, str) else (x.get("name") or "") for x in locs)
+        if not location and (j.get("work_mode") or "").lower() == "remote":
+            location = "Remote"
+        ts = j.get("created_at") or j.get("posted_at")
+        posted = (datetime.fromtimestamp(ts, tz=timezone.utc) if isinstance(ts, (int, float))
+                  else _dt(ts))
+        out.append(Posting(
+            source="vcboards", company=org.get("name") or j.get("company_name") or "", slug=f"vc-{board}",
+            job_id=str(j.get("id") or j.get("slug") or url)[-80:], title=title, location=location, url=url,
+            posted_at=posted, description=clean_text(j.get("description") or ""),
+            extra={"comp": "", "board": board}))
+    return out
+
+
+async def getro_board(session: aiohttp.ClientSession, name: str, base: str, queries: list[str],
+                      per_query: int = 40) -> list[Posting]:
+    try:
+        async with session.get(base.rstrip("/") + "/jobs", headers=UA,
+                               timeout=aiohttp.ClientTimeout(total=20)) as r:
+            m = _GETRO_ID.search(await r.text())
+        if not m:
+            print(f"  VC board {name}: not a Getro board, skipped")
+            return []
+        cid = m.group(1) or m.group(2)
+        found: dict[str, Posting] = {}
+        for q in queries:
+            body = {"hitsPerPage": per_query, "page": 0, "query": q, "filters": ""}
+            async with session.post(GETRO_API.format(cid=cid), json=body, headers=UA,
+                                    timeout=aiohttp.ClientTimeout(total=20)) as r:
+                if r.status != 200:
+                    print(f"  VC board {name}: HTTP {r.status}")
+                    break
+                data = await r.json()
+            jobs = (data.get("results") or {}).get("jobs") or data.get("jobs") or []
+            for p in map_getro(name, jobs):
+                found.setdefault(p.job_id, p)
+        return list(found.values())
+    except Exception as e:  # noqa: BLE001
+        print(f"  VC board {name}: {e}")
+        return []
+
+
+_SCRIPT_RE = re.compile(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>")
+
+
+async def page_text(session: aiohttp.ClientSession, url: str) -> str:
+    """Plain text of a job page (used when a board gives no description)."""
+    try:
+        async with session.get(url, headers=UA, timeout=aiohttp.ClientTimeout(total=20)) as r:
+            if r.status != 200:
+                return ""
+            body = await r.text()
+    except Exception:  # noqa: BLE001
+        return ""
+    return clean_text(_SCRIPT_RE.sub(" ", body))[:20000]
+
+
+async def vc_boards(session: aiohttp.ClientSession, cfg: dict) -> list[Posting]:
+    queries = cfg.get("queries", ["machine learning engineer", "AI engineer"])
+    sem = asyncio.Semaphore(4)
+
+    async def one(name, url):
+        async with sem:
+            return await getro_board(session, name, url, queries)
+    results = await asyncio.gather(*(one(n, u) for n, u in (cfg.get("boards") or {}).items()))
+    return [p for r in results for p in r]
+
+
 def apify_due(cfg: dict, now: datetime) -> bool:
     """Apify sources run in one scan a day (the scan whose UTC hour is listed)."""
     return now.astimezone(timezone.utc).hour in set(cfg.get("run_hours_utc", [15, 16]))
@@ -270,6 +414,12 @@ async def fetch_all(session: aiohttp.ClientSession, cfg: dict, now: datetime, lo
     if li.get("enabled", True):
         out["linkedin"] = await linkedin_search(session, li.get("queries", []), lookback_hours,
                                                 pages=int(li.get("pages", 6)))
+    hn = cfg.get("hackernews", {}) or {}
+    if hn.get("enabled", False):
+        out["hackernews"] = await hn_whos_hiring(session)
+    vc = cfg.get("vc_boards", {}) or {}
+    if vc.get("enabled", False):
+        out["vcboards"] = await vc_boards(session, vc)
     ap = cfg.get("apify", {}) or {}
     if ap.get("enabled", True) and (force_apify or apify_due(ap, now)):
         out.update(await apify_sources(session, ap))
