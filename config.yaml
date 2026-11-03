@@ -128,7 +128,7 @@ llm:
 job_boards:
   enabled: true
   linkedin:            # free, every scan (LinkedIn's public job search, no login)
-    enabled: true
+    enabled: false     # turned off: LinkedIn results were mostly poor fits
     pages: 6           # 10 jobs per page per search
     queries:
       - AI engineer
